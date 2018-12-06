@@ -4,7 +4,8 @@
   "description": "PEG parser generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "ts-node-dev --inspect --respawn --no-notify -- src/main.ts"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/hdemon/sally/issues"
   },
-  "homepage": "https://github.com/hdemon/sally#readme"
+  "homepage": "https://github.com/hdemon/sally#readme",
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.31",
+    "typescript": "^3.2.1"
+  }
 }
