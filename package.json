@@ -1,0 +1,19 @@
+{
+  "name": "sally",
+  "version": "0.1.0",
+  "description": "PEG parser generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdemon/sally.git"
+  },
+  "author": "Masami Yonehara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hdemon/sally/issues"
+  },
+  "homepage": "https://github.com/hdemon/sally#readme"
+}
