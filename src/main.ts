@@ -1,7 +1,8 @@
 function greeter(person: string) {
-    return "Hello, " + person;
+  return "Hello, " + person;
 }
 
 let user = "Jane User";
 
-console.log(user);
+// tslint:disable-next-line
+console.log(greeter(user));
