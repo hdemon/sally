@@ -1,25 +1,29 @@
+import Empty from '../src/empty'
 import Terminal from '../src/terminal'
-type Empty = ''
 type ParsingExpression = Terminal | NonTerminal | Empty
 
 export default class NonTerminal {
   private parsingExpressions: ParsingExpression[]
 
-  constructor(...parsingExpressions: ParsingExpression[]) {
+  constructor(parsingExpressions: ParsingExpression[]) {
     this.parsingExpressions = parsingExpressions
   }
 
-  public parse(input: string): boolean {
+  public parse(input: string): boolean[] {
     const result = Array.from(input).map(char => {
-      let i = 0
-      while (i >= this.parsingExpressions.length - 1) {
-        const _result = this.parsingExpressions[i].parse(char)
-        if (_result === true) {
-          return true
-        } else {
-          i++
-        }
-      }
+      return this.tryParse(0, char)
     })
+    return result
+  }
+
+  private tryParse(index: number, char: string): boolean {
+    const parseResult = this.parsingExpressions[index].parse(char)
+    if (parseResult === true) {
+      return true
+    } else if (index >= this.parsingExpressions.length - 1) {
+      return false
+    } else {
+      return this.tryParse(index + 1, char)
+    }
   }
 }
