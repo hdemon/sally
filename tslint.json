@@ -6,6 +6,7 @@
   "rules": {
     "prettier": [true, "prettier.config.js"],
     "no-var-keyword": true,
-    "prefer-const": true
+    "prefer-const": true,
+    "interface-name": false
   }
 }
