@@ -1,3 +1,3 @@
 export default interface NonTerminal {
-  parse(input: string): boolean
+  parse(input: string): { success: boolean; consumed: number }
 }
