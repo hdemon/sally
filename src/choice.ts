@@ -20,12 +20,18 @@ export default class Choice implements NonTerminal {
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index]().parse(input)
     console.log(`${input} -> choice? ${result}`)
-    if (result.success === true) {
-      return { success: true, consumed: result.consumed }
-    } else if (index < this.parsingExpressions.length - 1) {
-      return this.__Parse(index + 1, input)
+    if (result.consumed > 0) {
+      if (result.consumed === input.length) {
+        return { success: true, consumed: result.consumed }
+      } else {
+        return { success: false, consumed: 0 }
+      }
     } else {
-      return { success: false, consumed: result.consumed }
+      if (index < this.parsingExpressions.length - 1) {
+        return this.__Parse(index + 1, input)
+      } else {
+        return { success: false, consumed: 0 }
+      }
     }
   }
 }
