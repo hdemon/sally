@@ -1,13 +1,13 @@
 import Empty from '../src/empty'
 import NonTerminal from '../src/non_terminal'
-import ParsingExpression from '../src/parsing_expression'
+import LazyParsingExpression from '../src/parsing_expression'
 import Sequence from '../src/sequence'
 import Choice from './choice'
 
 export default class ZeroOrMore implements NonTerminal {
-  private parsingExpression: ParsingExpression
+  private parsingExpression: LazyParsingExpression
 
-  constructor(parsingExpression: ParsingExpression) {
+  constructor(parsingExpression: LazyParsingExpression) {
     this.parsingExpression = () =>
       new Choice([
         () =>

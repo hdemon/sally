@@ -1,24 +1,18 @@
 import c from 'colors/safe'
 import Empty from '../src/empty'
 import NonTerminal from '../src/non_terminal'
-import ParsingExpression from '../src/parsing_expression'
+import LazyParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
 
 export default class Sequence implements NonTerminal {
-  private parsingExpressions: ParsingExpression[]
-  private offsetBegin: number
-  private offsetEnd: number
-  private input: string
+  private parsingExpressions: LazyParsingExpression[]
   private consumed: number
 
-  constructor(parsingExpressions: ParsingExpression[]) {
+  constructor(parsingExpressions: LazyParsingExpression[]) {
     this.parsingExpressions = parsingExpressions
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    this.offsetBegin = 0
-    this.offsetEnd = 0
-    this.input = input
     this.consumed = 0
     return this.__Parse(0, input)
   }

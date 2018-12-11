@@ -1,13 +1,13 @@
 import Choice from '../src/choice'
 import Empty from '../src/empty'
 import NonTerminal from '../src/non_terminal'
-import ParsingExpression from '../src/parsing_expression'
+import LazyParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
 
 export default class Optional implements NonTerminal {
-  private parsingExpression: ParsingExpression
+  private parsingExpression: LazyParsingExpression
 
-  constructor(parsingExpression: ParsingExpression) {
+  constructor(parsingExpression: LazyParsingExpression) {
     this.parsingExpression = () =>
       new Choice([parsingExpression, () => new Empty()])
   }

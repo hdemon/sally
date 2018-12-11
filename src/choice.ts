@@ -1,12 +1,12 @@
 import Empty from '../src/empty'
 import NonTerminal from '../src/non_terminal'
-import ParsingExpression from '../src/parsing_expression'
+import LazyParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
 
 export default class Choice implements NonTerminal {
-  private parsingExpressions: ParsingExpression[]
+  private parsingExpressions: LazyParsingExpression[]
 
-  constructor(parsingExpressions: ParsingExpression[]) {
+  constructor(parsingExpressions: LazyParsingExpression[]) {
     this.parsingExpressions = parsingExpressions
   }
 
