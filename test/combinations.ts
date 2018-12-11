@@ -8,7 +8,7 @@ test('parse returns true if inputs is equal to the character which was given to 
     () => new Sequence([() => new Terminal('A'), () => new Terminal('B')]),
   ])
 
-  expect(parser.parse('ab')).toEqual(true)
-  expect(parser.parse('AB')).toEqual(true)
-  expect(parser.parse('aB')).toEqual(false)
+  expect(parser.parse('ab')).toEqual({ success: true, consumed: 2 })
+  expect(parser.parse('AB')).toEqual({ success: true, consumed: 2 })
+  expect(parser.parse('aB')).toEqual({ success: false, consumed: 0 })
 })

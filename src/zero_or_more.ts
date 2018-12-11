@@ -22,6 +22,6 @@ export default class ZeroOrMore implements NonTerminal {
   public parse(input: string): { success: boolean; consumed: number } {
     const result = this.parsingExpression().parse(input)
     console.log(`${input} -> zero_or_more? ${result.success}`)
-    return { success: result.success, consumed: 0 }
+    return { ...result }
   }
 }

@@ -20,7 +20,7 @@ export default class Choice implements NonTerminal {
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index]().parse(input)
     console.log(`${input} -> choice? ${result}`)
-    if (result.consumed > 0) {
+    if (result.success === true) {
       if (result.consumed === input.length) {
         return { success: true, consumed: result.consumed }
       } else {
