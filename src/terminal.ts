@@ -16,6 +16,6 @@ export default class Terminal {
         success ? c.green(String(success)) : c.red(String(success))
       }`
     )
-    return { success, consumed: this.character.length }
+    return { success, consumed: success ? this.character.length : 0 }
   }
 }
