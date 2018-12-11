@@ -1,7 +1,7 @@
 import Choice from '../src/choice'
 import Terminal from '../src/terminal'
 
-const parser = new Choice([new Terminal('a'), new Terminal('b')])
+const parser = new Choice([() => new Terminal('a'), () => new Terminal('b')])
 
 test('parse returns true if inputs is equal to the character which was given to constructor.', () => {
   expect(parser.parse('a')).toEqual(true)

@@ -1,7 +1,7 @@
 import Empty from '../src/empty'
 import NonTerminal from '../src/non_terminal'
+import ParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
-type ParsingExpression = Terminal | NonTerminal | Empty
 
 export default class Choice implements NonTerminal {
   private parsingExpressions: ParsingExpression[]
@@ -15,7 +15,7 @@ export default class Choice implements NonTerminal {
   }
 
   private __Parse(index: number, input: string): boolean {
-    const parseResult = this.parsingExpressions[index].parse(input)
+    const parseResult = this.parsingExpressions[index]().parse(input)
     if (parseResult === true) {
       return true
     } else if (index < this.parsingExpressions.length - 1) {
