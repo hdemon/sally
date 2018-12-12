@@ -38,7 +38,7 @@ export default class Sequence implements IParsingExpression {
         return this.__Parse(index + 1, input, result.consumed)
       }
     } else {
-      return { success: false, consumed: 0 }
+      return { success: false, consumed: this.consumed }
     }
   }
 }

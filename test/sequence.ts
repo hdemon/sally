@@ -13,5 +13,5 @@ test('Success cases', () => {
 })
 
 test('Failure cases', () => {
-  expect(parser().parse('abcde')).toEqual({ success: false, consumed: 0 })
+  expect(parser().parse('abcde')).toEqual({ success: false, consumed: 3 })
 })
