@@ -1,17 +1,17 @@
-import Sequence from '../src/sequence'
-import Terminal from '../src/terminal'
+import { sequence } from '../src/sequence'
+import { terminal } from '../src/terminal'
 
 let parser: any
 
 beforeEach(() => {
-  parser = new Sequence([() => new Terminal('abc'), () => new Terminal('def')])
+  parser = sequence([terminal('abc'), terminal('def')])
 })
 
 test('Success cases', () => {
-  expect(parser.parse('abcdef')).toEqual({ success: true, consumed: 6 })
-  expect(parser.parse('abcdefghe')).toEqual({ success: true, consumed: 6 })
+  expect(parser().parse('abcdef')).toEqual({ success: true, consumed: 6 })
+  expect(parser().parse('abcdefghe')).toEqual({ success: true, consumed: 6 })
 })
 
 test('Failure cases', () => {
-  expect(parser.parse('abcde')).toEqual({ success: false, consumed: 0 })
+  expect(parser().parse('abcde')).toEqual({ success: false, consumed: 0 })
 })
