@@ -4,7 +4,7 @@
   "jsRules": {},
   "rulesDirectory": ["tslint-plugin-prettier"],
   "rules": {
-    "prettier": [true, "prettier.config.js"],
+    "prettier": [true],
     "no-var-keyword": true,
     "prefer-const": true,
     "interface-name": false
