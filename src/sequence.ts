@@ -44,5 +44,5 @@ export default class Sequence implements IParsingExpression {
 }
 
 export const sequence = (
-  lazyParsingExpresisons: LazyParsingExpression[]
-) => () => new Sequence(lazyParsingExpresisons)
+  lazyParsingExpressions: LazyParsingExpression[]
+) => () => new Sequence(lazyParsingExpressions)
