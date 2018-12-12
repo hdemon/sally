@@ -1,6 +1,6 @@
 import c from 'colors/safe'
 import l from './logger'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import { IParsingExpression } from './parsing_expression'
 
 export default class NotPredicate implements IParsingExpression {
   private character: string

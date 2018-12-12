@@ -1,6 +1,5 @@
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
-import { terminal } from './terminal'
 
 export default class Choice implements IParsingExpression {
   private lazyParsingExpressions: LazyParsingExpression[]
