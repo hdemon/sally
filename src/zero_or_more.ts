@@ -1,4 +1,5 @@
 import Empty from '../src/empty'
+import l from '../src/logger'
 import NonTerminal from '../src/non_terminal'
 import LazyParsingExpression from '../src/parsing_expression'
 import Sequence from '../src/sequence'
@@ -21,7 +22,7 @@ export default class ZeroOrMore implements NonTerminal {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const result = this.parsingExpression().parse(input)
-    console.log(`${input} -> zero_or_more? ${result.success}`)
+    l(`${input} -> zero_or_more? ${result.success}`)
     return { ...result }
   }
 }

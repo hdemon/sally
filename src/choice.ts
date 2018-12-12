@@ -1,4 +1,5 @@
 import Empty from '../src/empty'
+import l from '../src/logger'
 import NonTerminal from '../src/non_terminal'
 import LazyParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
@@ -19,7 +20,7 @@ export default class Choice implements NonTerminal {
     input: string
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index]().parse(input)
-    console.log(`${input} -> choice? ${result}`)
+    l(`${input} -> choice? ${result}`)
     if (result.success === true) {
       if (result.consumed === input.length) {
         return { success: true, consumed: result.consumed }

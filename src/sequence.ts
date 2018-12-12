@@ -1,5 +1,6 @@
 import c from 'colors/safe'
 import Empty from '../src/empty'
+import l from '../src/logger'
 import NonTerminal from '../src/non_terminal'
 import LazyParsingExpression from '../src/parsing_expression'
 import Terminal from '../src/terminal'
@@ -23,7 +24,7 @@ export default class Sequence implements NonTerminal {
     offset: number = 0
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index]().parse(input.slice(offset))
-    console.log(
+    l(
       `${input} -> sequence? ${c[result.success ? 'green' : 'red'](
         String(result.success)
       )}`

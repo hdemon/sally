@@ -1,4 +1,5 @@
 import c from 'colors/safe'
+import l from '../src/logger'
 
 export default class Terminal {
   private character: string
@@ -9,7 +10,7 @@ export default class Terminal {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const success = input.indexOf(this.character) === 0
-    console.log(
+    l(
       `input: ${c.blue(input)} try to match with: ${c.yellow(
         this.character
       )} -> is terminal? ${
