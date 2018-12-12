@@ -1,10 +1,10 @@
-import AndPredicade from './andPredicade'
+import AndPredicate from './andPredicate'
 import Choice from './choice'
 import Empty from './empty'
-import NotPredicade from './notPredicade'
-import Optional from './optional'
+import NotPredicate from './notPredicate'
+import { optional } from './optional'
 import Sequence from './sequence'
-import Terminal from './terminal'
+import { terminal } from './terminal'
 import ZeroOrMore from './zero_or_more'
 
 export type ParsingExpression =
@@ -15,8 +15,8 @@ export type ParsingExpression =
   | Optional
   | ZeroOrMore
   // | OneOrMore
-  | AndPredicade
-  | NotPredicade
+  | AndPredicate
+  | NotPredicate
 
 export interface IParsingExpression {
   parse(input: string): { success: boolean; consumed: number }

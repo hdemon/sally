@@ -1,22 +1,17 @@
-import Choice from './choice'
-import Empty from './empty'
+import { choice } from './choice'
+import { empty } from './empty'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
-import Sequence from './sequence'
+import { sequence } from './sequence'
 
 export default class ZeroOrMore implements IParsingExpression {
   private parsingExpression: LazyParsingExpression
 
-  constructor(parsingExpression: LazyParsingExpression) {
-    this.parsingExpression = () =>
-      new Choice([
-        () =>
-          new Sequence([
-            parsingExpression,
-            () => new ZeroOrMore(parsingExpression),
-          ]),
-        () => new Empty(),
-      ])
+  constructor(lazyParsingExpression: LazyParsingExpression) {
+    this.parsingExpression = choice([
+      sequence([lazyParsingExpression, zeroOrMore(lazyParsingExpression)]),
+      empty(),
+    ])
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
@@ -25,3 +20,7 @@ export default class ZeroOrMore implements IParsingExpression {
     return { ...result }
   }
 }
+
+export const zeroOrMore = (
+  lazyParsingExpression: LazyParsingExpression
+) => () => new ZeroOrMore(lazyParsingExpression)

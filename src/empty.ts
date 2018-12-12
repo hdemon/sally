@@ -9,3 +9,5 @@ export default class Empty implements IParsingExpression {
     return { success, consumed: 0 }
   }
 }
+
+export const empty = () => () => new Empty()

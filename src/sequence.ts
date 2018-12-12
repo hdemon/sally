@@ -1,15 +1,14 @@
 import c from 'colors/safe'
-import Empty from './empty'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
-import Terminal from './terminal'
+import { terminal } from './terminal'
 
 export default class Sequence implements IParsingExpression {
-  private parsingExpressions: LazyParsingExpression[]
+  private lazyParsingExpressions: LazyParsingExpression[]
   private consumed: number
 
-  constructor(parsingExpressions: LazyParsingExpression[]) {
-    this.parsingExpressions = parsingExpressions
+  constructor(lazyParsingExpressions: LazyParsingExpression[]) {
+    this.lazyParsingExpressions = lazyParsingExpressions
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
@@ -22,7 +21,9 @@ export default class Sequence implements IParsingExpression {
     input: string,
     offset: number = 0
   ): { success: boolean; consumed: number } {
-    const result = this.parsingExpressions[index]().parse(input.slice(offset))
+    const result = this.lazyParsingExpressions[index]().parse(
+      input.slice(offset)
+    )
     l(
       `${input} -> sequence? ${c[result.success ? 'green' : 'red'](
         String(result.success)
@@ -31,7 +32,7 @@ export default class Sequence implements IParsingExpression {
     this.consumed += result.consumed
 
     if (result.success === true) {
-      if (this.parsingExpressions.length === index + 1) {
+      if (this.lazyParsingExpressions.length === index + 1) {
         return { success: true, consumed: this.consumed }
       } else {
         return this.__Parse(index + 1, input, result.consumed)
@@ -41,3 +42,7 @@ export default class Sequence implements IParsingExpression {
     }
   }
 }
+
+export const sequence = (
+  lazyParsingExpresisons: LazyParsingExpression[]
+) => () => new Sequence(lazyParsingExpresisons)

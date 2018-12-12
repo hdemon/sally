@@ -1,19 +1,21 @@
-import Choice from './choice'
-import Empty from './empty'
+import { choice } from './choice'
+import { empty } from './empty'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
 export default class Optional implements IParsingExpression {
-  private parsingExpression: LazyParsingExpression
+  private lazyParsingExpression: LazyParsingExpression
 
-  constructor(parsingExpression: LazyParsingExpression) {
-    this.parsingExpression = () =>
-      new Choice([parsingExpression, () => new Empty()])
+  constructor(lazyParsingExpression: LazyParsingExpression) {
+    this.lazyParsingExpression = choice([lazyParsingExpression, empty()])
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.parsingExpression().parse(input)
+    const result = this.lazyParsingExpression().parse(input)
     l(`${input} -> optional? ${result.success}`)
     return { success: result.success, consumed: result.consumed }
   }
 }
+
+export const optional = (lazyParsingExpression: LazyParsingExpression) => () =>
+  new Optional(lazyParsingExpression)

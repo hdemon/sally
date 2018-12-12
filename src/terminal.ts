@@ -21,3 +21,5 @@ export default class Terminal implements IParsingExpression {
     return { success, consumed: success ? this.character.length : 0 }
   }
 }
+
+export const terminal = (input: string) => () => new Terminal(input)

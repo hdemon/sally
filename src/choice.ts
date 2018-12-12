@@ -1,13 +1,12 @@
-import Empty from './empty'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
-import Terminal from './terminal'
+import { terminal } from './terminal'
 
 export default class Choice implements IParsingExpression {
-  private parsingExpressions: LazyParsingExpression[]
+  private lazyParsingExpressions: LazyParsingExpression[]
 
-  constructor(parsingExpressions: LazyParsingExpression[]) {
-    this.parsingExpressions = parsingExpressions
+  constructor(lazyParsingExpressions: LazyParsingExpression[]) {
+    this.lazyParsingExpressions = lazyParsingExpressions
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
@@ -18,7 +17,7 @@ export default class Choice implements IParsingExpression {
     index: number,
     input: string
   ): { success: boolean; consumed: number } {
-    const result = this.parsingExpressions[index]().parse(input)
+    const result = this.lazyParsingExpressions[index]().parse(input)
     l(`${input} -> choice? ${result}`)
     if (result.success === true) {
       if (result.consumed === input.length) {
@@ -27,7 +26,7 @@ export default class Choice implements IParsingExpression {
         return { success: false, consumed: 0 }
       }
     } else {
-      if (index < this.parsingExpressions.length - 1) {
+      if (index < this.lazyParsingExpressions.length - 1) {
         return this.__Parse(index + 1, input)
       } else {
         return { success: false, consumed: 0 }
@@ -35,3 +34,6 @@ export default class Choice implements IParsingExpression {
     }
   }
 }
+
+export const choice = (lazyParsingExpressions: LazyParsingExpression[]) => () =>
+  new Choice(lazyParsingExpressions)

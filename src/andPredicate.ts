@@ -2,7 +2,7 @@ import c from 'colors/safe'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
-export default class AndPredicade implements IParsingExpression {
+export default class AndPredicate implements IParsingExpression {
   private character: string
 
   constructor(character: string) {
@@ -14,10 +14,12 @@ export default class AndPredicade implements IParsingExpression {
     l(
       `input: ${c.blue(input)} try to match with: ${c.yellow(
         this.character
-      )} -> is andPredicade? ${
+      )} -> is andPredicate? ${
         success ? c.green(String(success)) : c.red(String(success))
       }`
     )
     return { success, consumed: 0 }
   }
 }
+
+export const andPredicate = (input: string) => () => new AndPredicate(input)
