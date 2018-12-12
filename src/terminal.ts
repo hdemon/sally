@@ -1,5 +1,5 @@
 import c from 'colors/safe'
-import l from '../src/logger'
+import l from './logger'
 
 export default class Terminal {
   private character: string

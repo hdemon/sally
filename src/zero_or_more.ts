@@ -1,8 +1,8 @@
-import Empty from '../src/empty'
-import l from '../src/logger'
-import NonTerminal from '../src/non_terminal'
-import LazyParsingExpression from '../src/parsing_expression'
-import Sequence from '../src/sequence'
+import Empty from './empty'
+import l from './logger'
+import NonTerminal from './non_terminal'
+import LazyParsingExpression from './parsing_expression'
+import Sequence from './sequence'
 import Choice from './choice'
 
 export default class ZeroOrMore implements NonTerminal {

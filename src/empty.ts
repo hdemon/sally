@@ -1,4 +1,4 @@
-import l from '../src/logger'
+import l from './logger'
 
 export default class Empty {
   public parse(input: string): { success: boolean; consumed: number } {

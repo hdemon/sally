@@ -1,9 +1,9 @@
 import c from 'colors/safe'
-import Empty from '../src/empty'
-import l from '../src/logger'
-import NonTerminal from '../src/non_terminal'
-import LazyParsingExpression from '../src/parsing_expression'
-import Terminal from '../src/terminal'
+import Empty from './empty'
+import l from './logger'
+import NonTerminal from './non_terminal'
+import LazyParsingExpression from './parsing_expression'
+import Terminal from './terminal'
 
 export default class Sequence implements NonTerminal {
   private parsingExpressions: LazyParsingExpression[]

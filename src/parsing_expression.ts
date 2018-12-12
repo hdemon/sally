@@ -1,6 +1,6 @@
-import Empty from '../src/empty'
-import NonTerminal from '../src/non_terminal'
-import Terminal from '../src/terminal'
+import Empty from './empty'
+import NonTerminal from './non_terminal'
+import Terminal from './terminal'
 
 type ParsingExpression = Terminal | NonTerminal | Empty
 type LazyParsingExpression = () => ParsingExpression
