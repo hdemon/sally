@@ -15,7 +15,11 @@ export default class OneOrMore implements IParsingExpression {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const result = this.parsingExpression().parse(input)
-    l(`${input} -> one_or_more? ${result.success}`)
+    l({
+      input,
+      nameOfExpression: 'one_or_more',
+      result,
+    })
     return { ...result }
   }
 }

@@ -11,7 +11,7 @@ export default class Sequence implements IParsingExpression {
     this.lazyParsingExpressions = lazyParsingExpressions
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string) {
     this.consumed = 0
     return this.__Parse(0, input)
   }
@@ -21,21 +21,20 @@ export default class Sequence implements IParsingExpression {
     input: string,
     offset: number = 0
   ): { success: boolean; consumed: number } {
-    const result = this.lazyParsingExpressions[index]().parse(
-      input.slice(offset)
-    )
-    l(
-      `${input} -> sequence? ${c[result.success ? 'green' : 'red'](
-        String(result.success)
-      )}`
-    )
+    const stringToTry = input.slice(offset)
+    const result = this.lazyParsingExpressions[index]().parse(stringToTry)
+    l({
+      input: stringToTry,
+      nameOfExpression: 'sequence',
+      result,
+    })
     this.consumed += result.consumed
 
     if (result.success === true) {
       if (this.lazyParsingExpressions.length === index + 1) {
         return { success: true, consumed: this.consumed }
       } else {
-        return this.__Parse(index + 1, input, result.consumed)
+        return this.__Parse(index + 1, input, this.consumed)
       }
     } else {
       return { success: false, consumed: this.consumed }

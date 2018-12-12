@@ -9,6 +9,6 @@ describe('Choice', () => {
 
   test('Failure cases', () => {
     const parser = choice([terminal('a'), terminal('ab')])
-    expect(parser().parse('ab')).toEqual({ success: false, consumed: 0 })
+    expect(parser().parse('ab')).toEqual({ success: false, consumed: 1 })
   })
 })

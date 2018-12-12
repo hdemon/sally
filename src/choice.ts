@@ -18,7 +18,7 @@ export default class Choice implements IParsingExpression {
     input: string
   ): { success: boolean; consumed: number } {
     const result = this.lazyParsingExpressions[index]().parse(input)
-    l(`${input} -> choice? ${result}`)
+    l({ nameOfExpression: 'choice', input, result })
     if (result.success === true) {
       if (result.consumed === input.length) {
         return { success: true, consumed: result.consumed }

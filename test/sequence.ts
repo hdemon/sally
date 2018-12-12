@@ -2,6 +2,7 @@ import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
 
 let parser: any
+// global.enableLog = true
 
 beforeEach(() => {
   parser = sequence([terminal('abc'), terminal('def')])

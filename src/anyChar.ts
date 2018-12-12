@@ -5,7 +5,12 @@ export default class AnyChar implements IParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
     // it might wrong
     const success = input.length === 1
-    l(`${input} -> anyChar? ${true}`)
+    const consumed = input.length ? 1 : 0
+    l({
+      input,
+      nameOfExpression: 'anyChar',
+      result: { success, consumed },
+    })
     return { success, consumed: input.length ? 1 : 0 }
   }
 }

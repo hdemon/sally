@@ -11,13 +11,12 @@ export default class Terminal implements IParsingExpression {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const success = input.indexOf(this.character) === 0
-    l(
-      `input: ${c.blue(input)} try to match with: ${c.yellow(
-        this.character
-      )} -> is terminal? ${
-        success ? c.green(String(success)) : c.red(String(success))
-      }`
-    )
+    const consumed = success ? this.character.length : 0
+    l({
+      input,
+      nameOfExpression: 'terminal',
+      result: { success, consumed },
+    })
     return { success, consumed: success ? this.character.length : 0 }
   }
 }

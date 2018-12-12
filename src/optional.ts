@@ -12,7 +12,11 @@ export default class Optional implements IParsingExpression {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const result = this.lazyParsingExpression().parse(input)
-    l(`${input} -> optional? ${result.success}`)
+    l({
+      input,
+      nameOfExpression: 'optional',
+      result,
+    })
     return { success: result.success, consumed: result.consumed }
   }
 }

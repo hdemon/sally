@@ -5,7 +5,11 @@ export default class Empty implements IParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
     // it might wrong
     const success = input === ''
-    l(`${input} -> empty? ${success}`)
+    l({
+      input,
+      nameOfExpression: 'empty',
+      result: { success, consumed: 0 },
+    })
     return { success, consumed: 0 }
   }
 }

@@ -16,7 +16,11 @@ export default class ZeroOrMore implements IParsingExpression {
 
   public parse(input: string): { success: boolean; consumed: number } {
     const result = this.parsingExpression().parse(input)
-    l(`${input} -> zero_or_more? ${result.success}`)
+    l({
+      input,
+      nameOfExpression: 'zero_or_more',
+      result,
+    })
     return { ...result }
   }
 }
