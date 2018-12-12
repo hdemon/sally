@@ -14,7 +14,7 @@ const logger = ({
     console.log(
       `Try to consume ${c.blue(input)} with ${c.cyan(nameOfExpression)} -> ${c[
         result.success ? 'green' : 'red'
-      ](String(result.success))} and consumed ${c.green(
+      ](result.success ? 'success' : 'fail')} and consumed ${c.green(
         String(result.consumed)
       )} characters`
     )

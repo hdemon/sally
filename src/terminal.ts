@@ -13,7 +13,7 @@ export default class Terminal implements IParsingExpression {
     const consumed = success ? this.character.length : 0
     l({
       input,
-      nameOfExpression: 'terminal',
+      nameOfExpression: `terminal: ${this.character}`,
       result: { success, consumed },
     })
     return { success, consumed: success ? this.character.length : 0 }
