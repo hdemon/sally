@@ -1,9 +1,9 @@
+import Choice from './choice'
 import Empty from './empty'
 import l from './logger'
 import NonTerminal from './non_terminal'
 import LazyParsingExpression from './parsing_expression'
 import Sequence from './sequence'
-import Choice from './choice'
 
 export default class ZeroOrMore implements NonTerminal {
   private parsingExpression: LazyParsingExpression
