@@ -1,11 +1,10 @@
 import Choice from './choice'
 import Empty from './empty'
 import l from './logger'
-import NonTerminal from './non_terminal'
-import LazyParsingExpression from './parsing_expression'
+import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 import Sequence from './sequence'
 
-export default class ZeroOrMore implements NonTerminal {
+export default class ZeroOrMore implements IParsingExpression {
   private parsingExpression: LazyParsingExpression
 
   constructor(parsingExpression: LazyParsingExpression) {

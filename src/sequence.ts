@@ -1,11 +1,10 @@
 import c from 'colors/safe'
 import Empty from './empty'
 import l from './logger'
-import NonTerminal from './non_terminal'
-import LazyParsingExpression from './parsing_expression'
+import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 import Terminal from './terminal'
 
-export default class Sequence implements NonTerminal {
+export default class Sequence implements IParsingExpression {
   private parsingExpressions: LazyParsingExpression[]
   private consumed: number
 

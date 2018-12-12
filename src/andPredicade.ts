@@ -1,7 +1,8 @@
 import c from 'colors/safe'
 import l from './logger'
+import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
-export default class AndPredicade {
+export default class AndPredicade implements IParsingExpression {
   private character: string
 
   constructor(character: string) {
