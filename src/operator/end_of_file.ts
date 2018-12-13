@@ -1,20 +1,17 @@
 import { anyChar } from './any_char'
 import l from '../core/logger'
 import { notPredicate } from './not_predicate'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class EndOfFile implements IParsingExpression {
-  private lazyParsingExpression: LazyParsingExpression
+export default class EndOfFile implements ParsingExpression {
+  private parsingExpression: ParsingExpression
 
   constructor() {
-    this.lazyParsingExpression = notPredicate(anyChar())
+    this.parsingExpression = notPredicate(anyChar())
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.lazyParsingExpression().parse(input)
+    const result = this.parsingExpression.parse(input)
     l({
       input,
       nameOfExpression: 'end_of_file',
@@ -24,4 +21,4 @@ export default class EndOfFile implements IParsingExpression {
   }
 }
 
-export const endOfFile = () => () => new EndOfFile()
+export const endOfFile = () => new EndOfFile()

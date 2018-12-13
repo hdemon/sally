@@ -1,18 +1,15 @@
 import l from '../core/logger'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class NotPredicate implements IParsingExpression {
-  private lazyParsingExpression: LazyParsingExpression
+export default class NotPredicate implements ParsingExpression {
+  private lazyParsingExpression: ParsingExpression
 
-  constructor(lazyParsingExpression: LazyParsingExpression) {
+  constructor(lazyParsingExpression: ParsingExpression) {
     this.lazyParsingExpression = lazyParsingExpression
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.lazyParsingExpression().parse(input)
+    const result = this.lazyParsingExpression.parse(input)
     const success = !result.success
     l({
       input,
@@ -23,6 +20,5 @@ export default class NotPredicate implements IParsingExpression {
   }
 }
 
-export const notPredicate = (
-  lazyParsingExpression: LazyParsingExpression
-) => () => new NotPredicate(lazyParsingExpression)
+export const notPredicate = (lazyParsingExpression: ParsingExpression) =>
+  new NotPredicate(lazyParsingExpression)

@@ -1,18 +1,15 @@
 import l from '../core/logger'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class AndPredicate implements IParsingExpression {
-  private lazyParsingExpression: LazyParsingExpression
+export default class AndPredicate implements ParsingExpression {
+  private parsingExpression: ParsingExpression
 
-  constructor(lazyParsingExpression: LazyParsingExpression) {
-    this.lazyParsingExpression = lazyParsingExpression
+  constructor(parsingExpression: ParsingExpression) {
+    this.parsingExpression = parsingExpression
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.lazyParsingExpression().parse(input)
+    const result = this.parsingExpression.parse(input)
     const success = result.success
     l({
       input,
@@ -23,6 +20,5 @@ export default class AndPredicate implements IParsingExpression {
   }
 }
 
-export const andPredicate = (
-  lazyParsingExpression: LazyParsingExpression
-) => () => new AndPredicate(lazyParsingExpression)
+export const andPredicate = (parsingExpression: ParsingExpression) =>
+  new AndPredicate(parsingExpression)

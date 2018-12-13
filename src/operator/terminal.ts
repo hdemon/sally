@@ -1,5 +1,5 @@
 import l from '../core/logger'
-import { IParsingExpression } from '../parsing_expression'
+import { IParsingExpression } from '../core/parsing_expression'
 
 export default class Terminal implements IParsingExpression {
   private character: string
@@ -20,4 +20,4 @@ export default class Terminal implements IParsingExpression {
   }
 }
 
-export const terminal = (input: string) => () => new Terminal(input)
+export const terminal = (input: string) => new Terminal(input)

@@ -1,16 +1,13 @@
 import c from 'colors/safe'
 import l from '../core/logger'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 import { terminal } from './terminal'
 
-export default class Sequence implements IParsingExpression {
-  private lazyParsingExpressions: LazyParsingExpression[]
+export default class Sequence implements ParsingExpression {
+  private lazyParsingExpressions: ParsingExpression[]
   private consumed: number
 
-  constructor(lazyParsingExpressions: LazyParsingExpression[]) {
+  constructor(lazyParsingExpressions: ParsingExpression[]) {
     this.lazyParsingExpressions = lazyParsingExpressions
   }
 
@@ -25,7 +22,7 @@ export default class Sequence implements IParsingExpression {
     offset: number = 0
   ): { success: boolean; consumed: number } {
     const stringToTry = input.slice(offset)
-    const result = this.lazyParsingExpressions[index]().parse(stringToTry)
+    const result = this.lazyParsingExpressions[index].parse(stringToTry)
     l({
       input: stringToTry,
       nameOfExpression: 'sequence',
@@ -45,6 +42,5 @@ export default class Sequence implements IParsingExpression {
   }
 }
 
-export const sequence = (
-  lazyParsingExpressions: LazyParsingExpression[]
-) => () => new Sequence(lazyParsingExpressions)
+export const sequence = (lazyParsingExpressions: ParsingExpression[]) =>
+  new Sequence(lazyParsingExpressions)

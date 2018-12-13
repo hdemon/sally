@@ -1,10 +1,7 @@
 import l from '../core/logger'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class AnyChar implements IParsingExpression {
+export default class AnyChar implements ParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
     const success = input.length >= 1
     const consumed = input.length ? 1 : 0
@@ -17,4 +14,4 @@ export default class AnyChar implements IParsingExpression {
   }
 }
 
-export const anyChar = () => () => new AnyChar()
+export const anyChar = () => new AnyChar()

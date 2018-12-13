@@ -1,7 +1,7 @@
 import l from '../core/logger'
-import { IParsingExpression } from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class Empty implements IParsingExpression {
+export default class Empty implements ParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
     // it might wrong
     const success = input === ''
@@ -14,4 +14,4 @@ export default class Empty implements IParsingExpression {
   }
 }
 
-export const empty = () => () => new Empty()
+export const empty = () => new Empty()

@@ -1,23 +1,20 @@
 import l from '../core/logger'
-import {
-  IParsingExpression,
-  LazyParsingExpression,
-} from '../parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 import { sequence } from './sequence'
 import { zeroOrMore } from './zero_or_more'
 
-export default class OneOrMore implements IParsingExpression {
-  private parsingExpression: LazyParsingExpression
+export default class OneOrMore implements ParsingExpression {
+  private parsingExpression: ParsingExpression
 
-  constructor(lazyParsingExpression: LazyParsingExpression) {
+  constructor(parsingExpression: ParsingExpression) {
     this.parsingExpression = sequence([
-      lazyParsingExpression,
-      zeroOrMore(lazyParsingExpression),
+      parsingExpression,
+      zeroOrMore(parsingExpression),
     ])
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.parsingExpression().parse(input)
+    const result = this.parsingExpression.parse(input)
     l({
       input,
       nameOfExpression: 'one_or_more',
@@ -27,5 +24,5 @@ export default class OneOrMore implements IParsingExpression {
   }
 }
 
-export const oneOrMore = (lazyParsingExpression: LazyParsingExpression) => () =>
-  new OneOrMore(lazyParsingExpression)
+export const oneOrMore = (parsingExpression: ParsingExpression) =>
+  new OneOrMore(parsingExpression)
