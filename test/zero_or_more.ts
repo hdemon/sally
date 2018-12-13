@@ -1,3 +1,5 @@
+import { endOfFile } from '../src/end_of_file'
+import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
 import { zeroOrMore } from '../src/zero_or_more'
 
@@ -16,4 +18,11 @@ test('Success cases', () => {
 test('Failure cases', () => {
   expect(parser().parse('abcdef')).toEqual({ success: false, consumed: 3 })
   expect(parser().parse('def')).toEqual({ success: false, consumed: 0 })
+})
+
+describe('With EndOfFile Operator', () => {
+  test('Failure cases', () => {
+    parser = sequence([zeroOrMore(terminal('abc')), endOfFile()])
+    expect(parser().parse('abcdef')).toEqual({ success: false, consumed: 3 })
+  })
 })

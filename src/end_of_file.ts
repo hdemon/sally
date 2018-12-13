@@ -3,10 +3,10 @@ import l from './logger'
 import { notPredicate } from './not_predicate'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
-export default class Optional implements IParsingExpression {
+export default class EndOfFile implements IParsingExpression {
   private lazyParsingExpression: LazyParsingExpression
 
-  constructor(lazyParsingExpression: LazyParsingExpression) {
+  constructor() {
     this.lazyParsingExpression = notPredicate(anyChar())
   }
 
@@ -14,12 +14,11 @@ export default class Optional implements IParsingExpression {
     const result = this.lazyParsingExpression().parse(input)
     l({
       input,
-      nameOfExpression: 'optional',
+      nameOfExpression: 'end_of_file',
       result,
     })
-    return { success: result.success, consumed: result.consumed }
+    return { ...result }
   }
 }
 
-export const optional = (lazyParsingExpression: LazyParsingExpression) => () =>
-  new Optional(lazyParsingExpression)
+export const endOfFile = () => () => new EndOfFile()

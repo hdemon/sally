@@ -1,14 +1,26 @@
 import { choice } from '../src/choice'
+import { endOfFile } from '../src/end_of_file'
+import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
 
 describe('Choice', () => {
   test('Success cases', () => {
-    const parser = choice([terminal('abc'), terminal('def')])
-    expect(parser().parse('ghi')).toEqual({ success: false, consumed: 0 })
+    const parser = choice([terminal('a'), terminal('ab')])
+    expect(parser().parse('ab')).toEqual({ success: true, consumed: 1 })
   })
 
   test('Failure cases', () => {
-    const parser = choice([terminal('a'), terminal('ab')])
-    expect(parser().parse('ab')).toEqual({ success: true, consumed: 1 })
+    const parser = choice([terminal('abc'), terminal('def')])
+    expect(parser().parse('ghi')).toEqual({ success: false, consumed: 0 })
+  })
+})
+
+describe('With EndOfFile Operator', () => {
+  test('Failure cases', () => {
+    const parser = sequence([
+      choice([terminal('a'), terminal('ab')]),
+      endOfFile(),
+    ])
+    expect(parser().parse('ab')).toEqual({ success: false, consumed: 1 })
   })
 })
