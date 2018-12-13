@@ -1,4 +1,4 @@
-import { notPredicate } from '../src/notPredicate'
+import { notPredicate } from '../src/not_predicate'
 import { terminal } from '../src/terminal'
 
 test('Success cases', () => {

@@ -1,4 +1,4 @@
-import { anyChar } from '../src/anyChar'
+import { anyChar } from '../src/any_char'
 
 test('Success cases', () => {
   expect(anyChar()().parse('1')).toEqual({

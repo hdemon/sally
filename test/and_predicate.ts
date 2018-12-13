@@ -1,4 +1,4 @@
-import { andPredicate } from '../src/andPredicate'
+import { andPredicate } from '../src/and_predicate'
 import { terminal } from '../src/terminal'
 
 test('Failure cases', () => {
