@@ -2,15 +2,16 @@ import c from 'colors/safe'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
-export default class AndPredicate implements IParsingExpression {
-  private character: string
+export default class NotPredicate implements IParsingExpression {
+  private lazyParsingExpression: LazyParsingExpression
 
-  constructor(character: string) {
-    this.character = character
+  constructor(lazyParsingExpression: LazyParsingExpression) {
+    this.lazyParsingExpression = lazyParsingExpression
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const success = input.indexOf(this.character) === 0
+    const result = this.lazyParsingExpression().parse(input)
+    const success = result.success
     l({
       input,
       nameOfExpression: 'andPredicate',
@@ -20,4 +21,6 @@ export default class AndPredicate implements IParsingExpression {
   }
 }
 
-export const andPredicate = (input: string) => () => new AndPredicate(input)
+export const notPredicate = (
+  lazyParsingExpression: LazyParsingExpression
+) => () => new NotPredicate(lazyParsingExpression)

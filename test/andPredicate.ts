@@ -1,22 +1,23 @@
-import { andPredicate } from '../src/andPredicate'
+import { notPredicate } from '../src/notPredicate'
+import { terminal } from '../src/terminal'
 
-test('Success cases', () => {
-  expect(andPredicate('123')().parse('123')).toEqual({
+test('Failure cases', () => {
+  expect(notPredicate(terminal('abc'))().parse('123')).toEqual({
     consumed: 0,
     success: true,
   })
-  expect(andPredicate('12')().parse('123')).toEqual({
+  expect(notPredicate(terminal('123'))().parse('12')).toEqual({
     consumed: 0,
     success: true,
   })
 })
 
-test('Failure cases', () => {
-  expect(andPredicate('ABC')().parse('123')).toEqual({
+test('Success cases', () => {
+  expect(notPredicate(terminal('123'))().parse('123')).toEqual({
     consumed: 0,
     success: false,
   })
-  expect(andPredicate('123')().parse('12')).toEqual({
+  expect(notPredicate(terminal('12'))().parse('123')).toEqual({
     consumed: 0,
     success: false,
   })
