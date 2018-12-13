@@ -2,6 +2,7 @@ import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
 export default class Choice implements IParsingExpression {
+  private consumed: number
   private lazyParsingExpressions: LazyParsingExpression[]
 
   constructor(lazyParsingExpressions: LazyParsingExpression[]) {
@@ -9,6 +10,7 @@ export default class Choice implements IParsingExpression {
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
+    this.consumed = 0
     return this.__Parse(0, input)
   }
 
@@ -18,17 +20,14 @@ export default class Choice implements IParsingExpression {
   ): { success: boolean; consumed: number } {
     const result = this.lazyParsingExpressions[index]().parse(input)
     l({ nameOfExpression: 'choice', input, result })
+    this.consumed += result.consumed
     if (result.success === true) {
-      if (result.consumed === input.length) {
-        return { success: true, consumed: result.consumed }
-      } else {
-        return { success: false, consumed: result.consumed }
-      }
+      return { success: true, consumed: this.consumed }
     } else {
       if (index < this.lazyParsingExpressions.length - 1) {
         return this.__Parse(index + 1, input)
       } else {
-        return { success: false, consumed: result.consumed }
+        return { success: false, consumed: this.consumed }
       }
     }
   }
