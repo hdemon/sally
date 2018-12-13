@@ -3,8 +3,7 @@ import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
 export default class AnyChar implements IParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
-    // it might wrong
-    const success = input.length === 1
+    const success = input.length >= 1
     const consumed = input.length ? 1 : 0
     l({
       input,
