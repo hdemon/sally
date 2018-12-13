@@ -1,6 +1,4 @@
 import { choice } from '../src/choice'
-import { empty } from '../src/empty'
-import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
 import { zeroOrMore } from '../src/zero_or_more'
 

@@ -1,5 +1,4 @@
 import { endOfFile } from '../src/end_of_file'
-import { oneOrMore } from '../src/one_or_more'
 import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
 
@@ -20,7 +19,6 @@ test('Failure cases', () => {
 
 describe('With EndOfFile Operator', () => {
   test('Failure cases', () => {
-    global.enableLog = true
     parser = sequence([
       sequence([terminal('abc'), terminal('def')]),
       endOfFile(),
