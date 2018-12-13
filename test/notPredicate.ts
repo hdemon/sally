@@ -1,23 +1,24 @@
-import { notPredicate } from '../src/NotPredicate'
+import { notPredicate } from '../src/notPredicate'
+import { terminal } from '../src/terminal'
 
 test('Success cases', () => {
-  expect(notPredicate('123')().parse('123')).toEqual({
+  expect(notPredicate(terminal('abc'))().parse('123')).toEqual({
     consumed: 0,
-    success: false,
+    success: true,
   })
-  expect(notPredicate('12')().parse('123')).toEqual({
+  expect(notPredicate(terminal('123'))().parse('12')).toEqual({
     consumed: 0,
-    success: false,
+    success: true,
   })
 })
 
 test('Failure cases', () => {
-  expect(notPredicate('ABC')().parse('123')).toEqual({
+  expect(notPredicate(terminal('123'))().parse('123')).toEqual({
     consumed: 0,
-    success: true,
+    success: false,
   })
-  expect(notPredicate('123')().parse('12')).toEqual({
+  expect(notPredicate(terminal('12'))().parse('123')).toEqual({
     consumed: 0,
-    success: true,
+    success: false,
   })
 })

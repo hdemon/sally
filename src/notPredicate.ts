@@ -1,23 +1,26 @@
 import c from 'colors/safe'
 import l from './logger'
-import { IParsingExpression } from './parsing_expression'
+import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
 export default class NotPredicate implements IParsingExpression {
-  private character: string
+  private lazyParsingExpression: LazyParsingExpression
 
-  constructor(character: string) {
-    this.character = character
+  constructor(lazyParsingExpression: LazyParsingExpression) {
+    this.lazyParsingExpression = lazyParsingExpression
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const success = input.indexOf(this.character) !== 0
+    const result = this.lazyParsingExpression().parse(input)
+    const success = !result.success
     l({
       input,
-      nameOfExpression: 'andPredicate',
+      nameOfExpression: 'notPredicate',
       result: { success, consumed: 0 },
     })
     return { success, consumed: 0 }
   }
 }
 
-export const notPredicate = (input: string) => () => new NotPredicate(input)
+export const notPredicate = (
+  lazyParsingExpression: LazyParsingExpression
+) => () => new NotPredicate(lazyParsingExpression)
