@@ -4,11 +4,11 @@ import { ParsingExpression } from '../core/parsing_expression'
 import { terminal } from './terminal'
 
 export default class Sequence implements ParsingExpression {
-  private lazyParsingExpressions: ParsingExpression[]
+  private parsingExpressions: ParsingExpression[]
   private consumed: number
 
-  constructor(lazyParsingExpressions: ParsingExpression[]) {
-    this.lazyParsingExpressions = lazyParsingExpressions
+  constructor(parsingExpressions: ParsingExpression[]) {
+    this.parsingExpressions = parsingExpressions
   }
 
   public parse(input: string) {
@@ -22,7 +22,7 @@ export default class Sequence implements ParsingExpression {
     offset: number = 0
   ): { success: boolean; consumed: number } {
     const stringToTry = input.slice(offset)
-    const result = this.lazyParsingExpressions[index].parse(stringToTry)
+    const result = this.parsingExpressions[index].parse(stringToTry)
     l({
       input: stringToTry,
       nameOfExpression: 'sequence',
@@ -31,7 +31,7 @@ export default class Sequence implements ParsingExpression {
     this.consumed += result.consumed
 
     if (result.success === true) {
-      if (this.lazyParsingExpressions.length === index + 1) {
+      if (this.parsingExpressions.length === index + 1) {
         return { success: true, consumed: this.consumed }
       } else {
         return this.__Parse(index + 1, input, this.consumed)

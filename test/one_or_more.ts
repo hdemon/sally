@@ -7,13 +7,16 @@ beforeEach(() => {
   parser = oneOrMore(terminal('abc'))
 })
 
-test('Success cases', () => {
-  expect(parser().parse('abc')).toEqual({ success: true, consumed: 3 })
-  expect(parser().parse('abcabc')).toEqual({ success: true, consumed: 6 })
+test('Success and all characters will be consumed.', () => {
+  expect(parser.parse('abc')).toEqual({ success: true, consumed: 3 })
+  expect(parser.parse('abcabc')).toEqual({ success: true, consumed: 6 })
+})
+
+test("Success but some characters won't be consumed.", () => {
+  expect(parser.parse('abcdef')).toEqual({ success: true, consumed: 3 })
 })
 
 test('Failure cases', () => {
-  expect(parser().parse('')).toEqual({ success: false, consumed: 0 })
-  expect(parser().parse('abcdef')).toEqual({ success: false, consumed: 3 })
-  expect(parser().parse('def')).toEqual({ success: false, consumed: 0 })
+  expect(parser.parse('')).toEqual({ success: false, consumed: 0 })
+  expect(parser.parse('def')).toEqual({ success: false, consumed: 0 })
 })

@@ -10,16 +10,16 @@ describe('1', () => {
   })
 
   test('Success cases', () => {
-    expect(parser().parse('')).toEqual({ success: true, consumed: 0 })
-    expect(parser().parse('abc')).toEqual({ success: true, consumed: 3 })
-    expect(parser().parse('abcabcdef')).toEqual({ success: true, consumed: 9 })
-    expect(parser().parse('abcdefabcdef')).toEqual({
+    expect(parser.parse('')).toEqual({ success: true, consumed: 0 })
+    expect(parser.parse('abc')).toEqual({ success: true, consumed: 3 })
+    expect(parser.parse('abcabcdef')).toEqual({ success: true, consumed: 9 })
+    expect(parser.parse('abcdefabcdef')).toEqual({
       consumed: 12,
       success: true,
     })
   })
 
   test('Failure cases', () => {
-    expect(parser().parse('abcde')).toEqual({ success: false, consumed: 3 })
+    expect(parser.parse('abcde')).toEqual({ success: false, consumed: 3 })
   })
 })

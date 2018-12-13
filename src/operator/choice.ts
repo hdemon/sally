@@ -21,6 +21,7 @@ export default class Choice implements ParsingExpression {
     const result = this.parsingExpressions[index].parse(input)
     l({ nameOfExpression: 'choice', input, result })
     this.consumed += result.consumed
+
     if (result.success === true) {
       return { success: true, consumed: this.consumed }
     } else {
