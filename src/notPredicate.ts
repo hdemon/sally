@@ -1,4 +1,3 @@
-import c from 'colors/safe'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 

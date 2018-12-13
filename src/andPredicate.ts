@@ -1,8 +1,7 @@
-import c from 'colors/safe'
 import l from './logger'
 import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
 
-export default class NotPredicate implements IParsingExpression {
+export default class AndPredicate implements IParsingExpression {
   private lazyParsingExpression: LazyParsingExpression
 
   constructor(lazyParsingExpression: LazyParsingExpression) {
@@ -21,6 +20,6 @@ export default class NotPredicate implements IParsingExpression {
   }
 }
 
-export const notPredicate = (
+export const andPredicate = (
   lazyParsingExpression: LazyParsingExpression
-) => () => new NotPredicate(lazyParsingExpression)
+) => () => new AndPredicate(lazyParsingExpression)
