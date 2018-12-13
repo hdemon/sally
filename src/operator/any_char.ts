@@ -1,5 +1,8 @@
-import l from './logger'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import {
+  IParsingExpression,
+  LazyParsingExpression,
+} from '../parsing_expression'
 
 export default class AnyChar implements IParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {

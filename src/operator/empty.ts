@@ -1,5 +1,5 @@
-import l from './logger'
-import { IParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import { IParsingExpression } from '../parsing_expression'
 
 export default class Empty implements IParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {

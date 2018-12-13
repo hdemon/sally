@@ -1,5 +1,8 @@
-import l from './logger'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import {
+  IParsingExpression,
+  LazyParsingExpression,
+} from '../parsing_expression'
 
 export default class Choice implements IParsingExpression {
   private consumed: number

@@ -1,6 +1,6 @@
-import { endOfFile } from '../src/end_of_file'
-import { sequence } from '../src/sequence'
-import { terminal } from '../src/terminal'
+import { endOfFile } from '../src/operator/end_of_file'
+import { sequence } from '../src/operator/sequence'
+import { terminal } from '../src/operator/terminal'
 
 test('Success cases', () => {
   expect(terminal('123')().parse('123')).toEqual({

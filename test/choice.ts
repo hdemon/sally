@@ -1,7 +1,7 @@
-import { choice } from '../src/choice'
-import { endOfFile } from '../src/end_of_file'
-import { sequence } from '../src/sequence'
-import { terminal } from '../src/terminal'
+import { choice } from '../src/operator/choice'
+import { endOfFile } from '../src/operator/end_of_file'
+import { sequence } from '../src/operator/sequence'
+import { terminal } from '../src/operator/terminal'
 
 describe('Choice', () => {
   test('Success cases', () => {

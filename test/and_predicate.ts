@@ -1,5 +1,5 @@
-import { andPredicate } from '../src/and_predicate'
-import { terminal } from '../src/terminal'
+import { andPredicate } from '../src/operator/and_predicate'
+import { terminal } from '../src/operator/terminal'
 
 test('Failure cases', () => {
   expect(andPredicate(terminal('abc'))().parse('123')).toEqual({

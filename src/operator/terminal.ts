@@ -1,5 +1,5 @@
-import l from './logger'
-import { IParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import { IParsingExpression } from '../parsing_expression'
 
 export default class Terminal implements IParsingExpression {
   private character: string

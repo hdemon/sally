@@ -1,6 +1,9 @@
 import c from 'colors/safe'
-import l from './logger'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import {
+  IParsingExpression,
+  LazyParsingExpression,
+} from '../parsing_expression'
 import { terminal } from './terminal'
 
 export default class Sequence implements IParsingExpression {

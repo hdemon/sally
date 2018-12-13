@@ -1,5 +1,5 @@
-import { optional } from '../src/optional'
-import { terminal } from '../src/terminal'
+import { optional } from '../src/operator/optional'
+import { terminal } from '../src/operator/terminal'
 
 let parser: any
 beforeEach(() => {

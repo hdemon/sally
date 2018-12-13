@@ -1,5 +1,5 @@
-import { oneOrMore } from '../src/one_or_more'
-import { terminal } from '../src/terminal'
+import { oneOrMore } from '../src/operator/one_or_more'
+import { terminal } from '../src/operator/terminal'
 
 let parser: any
 

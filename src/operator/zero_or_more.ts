@@ -1,7 +1,10 @@
 import { choice } from './choice'
 import { empty } from './empty'
-import l from './logger'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import l from '../core/logger'
+import {
+  IParsingExpression,
+  LazyParsingExpression,
+} from '../parsing_expression'
 import { sequence } from './sequence'
 
 export default class ZeroOrMore implements IParsingExpression {

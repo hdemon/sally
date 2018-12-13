@@ -1,11 +1,11 @@
-import AndPredicate from './and_predicate'
-import Choice from './choice'
-import Empty from './empty'
-import NotPredicate from './not_predicate'
-import Optional from './optional'
-import Sequence from './sequence'
-import Terminal from './terminal'
-import ZeroOrMore from './zero_or_more'
+import AndPredicate from './operator/and_predicate'
+import Choice from './operator/choice'
+import Empty from './operator/empty'
+import NotPredicate from './operator/not_predicate'
+import Optional from './operator/optional'
+import Sequence from './operator/sequence'
+import Terminal from './operator/terminal'
+import ZeroOrMore from './operator/zero_or_more'
 
 export type ParsingExpression =
   | Empty

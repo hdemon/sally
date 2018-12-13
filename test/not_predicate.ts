@@ -1,5 +1,5 @@
-import { notPredicate } from '../src/not_predicate'
-import { terminal } from '../src/terminal'
+import { notPredicate } from '../src/operator/not_predicate'
+import { terminal } from '../src/operator/terminal'
 
 test('Success cases', () => {
   expect(notPredicate(terminal('abc'))().parse('123')).toEqual({

@@ -1,6 +1,6 @@
-import { anyChar } from '../src/any_char'
-import { endOfFile } from '../src/end_of_file'
-import { sequence } from '../src/sequence'
+import { anyChar } from '../src/operator/any_char'
+import { endOfFile } from '../src/operator/end_of_file'
+import { sequence } from '../src/operator/sequence'
 
 test('Success cases', () => {
   expect(anyChar()().parse('1')).toEqual({

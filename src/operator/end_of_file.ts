@@ -1,7 +1,10 @@
 import { anyChar } from './any_char'
-import l from './logger'
+import l from '../core/logger'
 import { notPredicate } from './not_predicate'
-import { IParsingExpression, LazyParsingExpression } from './parsing_expression'
+import {
+  IParsingExpression,
+  LazyParsingExpression,
+} from '../parsing_expression'
 
 export default class EndOfFile implements IParsingExpression {
   private lazyParsingExpression: LazyParsingExpression
