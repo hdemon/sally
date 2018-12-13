@@ -1,28 +1,27 @@
-import { andPredicate } from '../src/andPredicate'
 import { choice } from '../src/choice'
+import { empty } from '../src/empty'
 import { sequence } from '../src/sequence'
 import { terminal } from '../src/terminal'
+import { zeroOrMore } from '../src/zero_or_more'
 
-let parser: any
+describe('1', () => {
+  let parser: any
 
-beforeEach(() => {
-  parser = choice([
-    sequence([terminal('a'), terminal('b')]),
-    sequence([terminal('A'), terminal('B')]),
-  ])
-})
-
-test('Success cases', () => {
-  expect(parser().parse('ab')).toEqual({ success: true, consumed: 2 })
-  expect(parser().parse('AB')).toEqual({ success: true, consumed: 2 })
-
-  const parser2 = sequence([andPredicate('123'), terminal('123')])
-  expect(parser2().parse('123')).toEqual({
-    consumed: 3,
-    success: true,
+  beforeEach(() => {
+    parser = zeroOrMore(choice([terminal('abc'), terminal('def')]))
   })
-})
 
-test('Failure cases', () => {
-  expect(parser().parse('aB')).toEqual({ success: false, consumed: 0 })
+  test('Success cases', () => {
+    expect(parser().parse('')).toEqual({ success: true, consumed: 0 })
+    expect(parser().parse('abc')).toEqual({ success: true, consumed: 3 })
+    expect(parser().parse('abcabcdef')).toEqual({ success: true, consumed: 9 })
+    expect(parser().parse('abcdefabcdef')).toEqual({
+      consumed: 12,
+      success: true,
+    })
+  })
+
+  test('Failure cases', () => {
+    expect(parser().parse('abcde')).toEqual({ success: false, consumed: 3 })
+  })
 })
