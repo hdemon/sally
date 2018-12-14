@@ -22,14 +22,14 @@ export default class Choice implements ParsingExpression {
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index].parse(input)
 
+    this.consumed += result.consumed
     if (result.success === true) {
-      this.consumed += result.consumed
       return { success: true, consumed: this.consumed }
     } else {
       if (index < this.parsingExpressions.length - 1) {
         return this.__Parse(index + 1, input)
       } else {
-        return { success: false, consumed: 0 }
+        return { success: false, consumed: this.consumed }
       }
     }
   }

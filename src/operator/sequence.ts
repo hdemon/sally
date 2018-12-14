@@ -30,19 +30,14 @@ export default class Sequence implements ParsingExpression {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpressions[index].parse(stringToTry)
 
+    this.consumed += result.consumed
     if (result.success === true) {
-      this.consumed += result.consumed
       if (this.parsingExpressions.length === index + 1) {
         return { success: true, consumed: this.consumed }
       } else {
         return this.__Parse(index + 1, input, this.consumed)
       }
     } else {
-      l({
-        input: stringToTry,
-        nameOfExpression: 'sequence',
-        result,
-      })
       return { success: false, consumed: this.consumed }
     }
   }
