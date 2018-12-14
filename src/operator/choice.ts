@@ -2,8 +2,8 @@ import l from '../core/logger'
 import { ParsingExpression } from '../core/parsing_expression'
 
 export default class Choice implements ParsingExpression {
-  private consumed: number
-  private parsingExpressions: ParsingExpression[]
+  public consumed: number
+  public parsingExpressions: ParsingExpression[]
 
   constructor(parsingExpressions: ParsingExpression[]) {
     this.parsingExpressions = parsingExpressions
@@ -11,7 +11,9 @@ export default class Choice implements ParsingExpression {
 
   public parse(input: string): { success: boolean; consumed: number } {
     this.consumed = 0
-    return this.__Parse(0, input)
+    const result = this.__Parse(0, input)
+    l({ nameOfExpression: 'choice', input, result })
+    return result
   }
 
   private __Parse(
@@ -19,16 +21,15 @@ export default class Choice implements ParsingExpression {
     input: string
   ): { success: boolean; consumed: number } {
     const result = this.parsingExpressions[index].parse(input)
-    l({ nameOfExpression: 'choice', input, result })
-    this.consumed += result.consumed
 
     if (result.success === true) {
+      this.consumed += result.consumed
       return { success: true, consumed: this.consumed }
     } else {
       if (index < this.parsingExpressions.length - 1) {
         return this.__Parse(index + 1, input)
       } else {
-        return { success: false, consumed: this.consumed }
+        return { success: false, consumed: 0 }
       }
     }
   }

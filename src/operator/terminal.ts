@@ -1,7 +1,7 @@
 import l from '../core/logger'
-import { IParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression } from '../core/parsing_expression'
 
-export default class Terminal implements IParsingExpression {
+export default class Terminal implements ParsingExpression {
   private character: string
 
   constructor(character: string) {
@@ -16,7 +16,7 @@ export default class Terminal implements IParsingExpression {
       nameOfExpression: `terminal: ${this.character}`,
       result: { success, consumed },
     })
-    return { success, consumed: success ? this.character.length : 0 }
+    return { success, consumed }
   }
 }
 

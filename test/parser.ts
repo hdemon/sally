@@ -9,7 +9,7 @@ import { zeroOrMore } from '../src/operator/zero_or_more'
 describe('1', () => {
   test('1', () => {
     const p = new Parser()
-    p.define('expression', terminal('abc'))
+    p.define('expression', () => terminal('abc'))
     p.startFrom('expression')
 
     expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
@@ -18,7 +18,7 @@ describe('1', () => {
 
   test('2', () => {
     const p = new Parser()
-    p.define('expression', sequence([terminal('abc'), endOfFile()]))
+    p.define('expression', () => sequence([terminal('abc'), endOfFile()]))
     p.startFrom('expression')
 
     expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
@@ -28,14 +28,14 @@ describe('1', () => {
   test('3', () => {
     global.enableLog = true
     const p = new Parser()
-    p.define(
-      'expression',
-      sequence([terminal('abc'), choice([p.refer('expression'), empty()])])
+    p.define('expression', () =>
+      // sequence([terminal('abc'), p.refer('expression')])
+      sequence([terminal('abc'), choice([p.refer('expression'), endOfFile()])])
     )
     p.startFrom('expression')
 
     // expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
     expect(p.parse('abcabc')).toEqual({ success: true, consumed: 6 })
-    expect(p.parse('abcabcd')).toEqual({ success: false, consumed: 6 })
+    // expect(p.parse('abcabcd')).toEqual({ success: false, consumed: 6 })
   })
 })

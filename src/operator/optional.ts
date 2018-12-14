@@ -11,13 +11,23 @@ export default class Optional implements ParsingExpression {
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.parsingExpression.parse(input)
+    const result = this.__Parse(input)
     l({
       input,
       nameOfExpression: 'optional',
       result,
     })
-    return { success: result.success, consumed: result.consumed }
+    return result
+  }
+
+  public __Parse(input: string): { success: boolean; consumed: number } {
+    const result = this.parsingExpression.parse(input)
+
+    if (result.success === true) {
+      return { ...result }
+    } else {
+      return { success: false, consumed: 0 }
+    }
   }
 }
 

@@ -10,7 +10,7 @@ export default class AnyChar implements ParsingExpression {
       nameOfExpression: 'anyChar',
       result: { success, consumed },
     })
-    return { success, consumed: input.length ? 1 : 0 }
+    return { success, consumed }
   }
 }
 

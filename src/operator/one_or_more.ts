@@ -14,13 +14,22 @@ export default class OneOrMore implements ParsingExpression {
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    const result = this.parsingExpression.parse(input)
+    const result = this.__Parse(input)
     l({
       input,
       nameOfExpression: 'one_or_more',
       result,
     })
-    return { ...result }
+    return result
+  }
+
+  public __Parse(input: string): { success: boolean; consumed: number } {
+    const result = this.parsingExpression.parse(input)
+    if (result.success === true) {
+      return { ...result }
+    } else {
+      return { success: false, consumed: 0 }
+    }
   }
 }
 

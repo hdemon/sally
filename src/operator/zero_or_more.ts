@@ -9,6 +9,7 @@ export default class ZeroOrMore implements ParsingExpression {
   private consumed: number
 
   constructor(parsingExpression: ParsingExpression) {
+    this.consumed = 0
     this.parsingExpression = parsingExpression
     // this.parsingExpression = choice([
     //   sequence([parsingExpression, zeroOrMore(parsingExpression)]),
@@ -17,8 +18,13 @@ export default class ZeroOrMore implements ParsingExpression {
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    this.consumed = 0
-    return this.__Parse(input, 0)
+    const result = this.__Parse(input, 0)
+    l({
+      input,
+      nameOfExpression: 'zero_or_more',
+      result,
+    })
+    return result
   }
 
   private __Parse(
@@ -27,14 +33,9 @@ export default class ZeroOrMore implements ParsingExpression {
   ): { success: boolean; consumed: number } {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpression.parse(stringToTry)
-    l({
-      input,
-      nameOfExpression: 'zero_or_more',
-      result,
-    })
-    this.consumed += result.consumed
 
     if (result.success === true) {
+      this.consumed += result.consumed
       return this.__Parse(input, this.consumed)
     } else {
       return { success: true, consumed: this.consumed }

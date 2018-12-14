@@ -1,8 +1,9 @@
+import l from '../core/logger'
 import { ParsingExpression } from './parsing_expression'
 import Reference from './reference'
 
 export default class Parser {
-  public definitions: { [key: string]: ParsingExpression }
+  public definitions: { [key: string]: () => ParsingExpression }
   public definitionNameStartFrom: string
 
   constructor() {
@@ -14,8 +15,8 @@ export default class Parser {
     this.definitionNameStartFrom = name
   }
 
-  public define(name: string, parsingExpression: ParsingExpression): void {
-    this.definitions[name] = parsingExpression
+  public define(name: string, callback: () => ParsingExpression): void {
+    this.definitions[name] = callback
   }
 
   public refer(name: string): Reference {
@@ -23,6 +24,12 @@ export default class Parser {
   }
 
   public parse(input: string): { success: boolean; consumed: number } {
-    return this.definitions[this.definitionNameStartFrom].parse(input)
+    const result = this.definitions[this.definitionNameStartFrom]().parse(input)
+    l({
+      input,
+      nameOfExpression: 'end_of_file',
+      result,
+    })
+    return result
   }
 }

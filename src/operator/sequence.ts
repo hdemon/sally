@@ -13,7 +13,13 @@ export default class Sequence implements ParsingExpression {
 
   public parse(input: string) {
     this.consumed = 0
-    return this.__Parse(0, input)
+    const result = this.__Parse(0, input)
+    l({
+      input,
+      nameOfExpression: 'sequence',
+      result,
+    })
+    return result
   }
 
   private __Parse(
@@ -23,24 +29,24 @@ export default class Sequence implements ParsingExpression {
   ): { success: boolean; consumed: number } {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpressions[index].parse(stringToTry)
-    l({
-      input: stringToTry,
-      nameOfExpression: 'sequence',
-      result,
-    })
-    this.consumed += result.consumed
 
     if (result.success === true) {
+      this.consumed += result.consumed
       if (this.parsingExpressions.length === index + 1) {
         return { success: true, consumed: this.consumed }
       } else {
         return this.__Parse(index + 1, input, this.consumed)
       }
     } else {
+      l({
+        input: stringToTry,
+        nameOfExpression: 'sequence',
+        result,
+      })
       return { success: false, consumed: this.consumed }
     }
   }
 }
 
-export const sequence = (lazyParsingExpressions: ParsingExpression[]) =>
-  new Sequence(lazyParsingExpressions)
+export const sequence = (parsingExpressions: ParsingExpression[]) =>
+  new Sequence(parsingExpressions)
