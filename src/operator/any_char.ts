@@ -4,7 +4,7 @@ import { ParsingExpression } from '../core/parsing_expression'
 export default class AnyChar implements ParsingExpression {
   public parse(input: string): { success: boolean; consumed: number } {
     const success = input.length >= 1
-    const consumed = input.length ? 1 : 0
+    const consumed = success ? 1 : 0
     l({
       input,
       nameOfExpression: 'anyChar',

@@ -25,11 +25,7 @@ export default class OneOrMore implements ParsingExpression {
 
   public __Parse(input: string): { success: boolean; consumed: number } {
     const result = this.parsingExpression.parse(input)
-    if (result.success === true) {
-      return { ...result }
-    } else {
-      return { success: false, consumed: 0 }
-    }
+    return { ...result }
   }
 }
 

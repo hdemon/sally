@@ -21,13 +21,7 @@ export default class EndOfFile implements ParsingExpression {
   }
 
   public __Parse(input: string): { success: boolean; consumed: number } {
-    const result = this.parsingExpression.parse(input)
-
-    if (result.success === true) {
-      return { success: true, consumed: result.consumed }
-    } else {
-      return { success: false, consumed: 0 }
-    }
+    return this.parsingExpression.parse(input)
   }
 }
 

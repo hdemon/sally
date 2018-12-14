@@ -5,7 +5,7 @@ import { oneOrMore } from '../src/operator/one_or_more'
 import { zeroOrMore } from '../src/operator/zero_or_more'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
-global.enableLog = true
+
 const p = new Parser()
 
 p.define('plus', () => terminal('+'))
@@ -15,6 +15,8 @@ p.define('slash', () => terminal('/'))
 p.define('leftParenthesis', () => terminal('('))
 p.define('rightParenthesis', () => terminal(')'))
 
+p.define('arithmetic', () => sequence([p.refer('expression'), endOfFile()]))
+
 // Expression
 //   = Term (("+" / "-")  Term)*
 p.define('expression', () =>
@@ -23,7 +25,6 @@ p.define('expression', () =>
     zeroOrMore(
       sequence([choice([p.refer('plus'), p.refer('minus')]), p.refer('term')])
     ),
-    endOfFile(),
   ])
 )
 
@@ -72,15 +73,29 @@ p.define('digit', () =>
   ])
 )
 
-p.startFrom('expression')
+p.startFrom('arithmetic')
 
-test('', () => {
-  // expect(p.parse('1')).toEqual({ consumed: 1, success: true })
+test('Success', () => {
+  expect(p.parse('1')).toEqual({ consumed: 1, success: true })
   expect(p.parse('(1)')).toEqual({ consumed: 3, success: true })
-  // expect(p.parse('1')).toEqual({ consumed: 1, success: true })
-  // expect(p.parse('1+2')).toEqual({ consumed: 3, success: true })
-  // expect(p.parse('(1+2)')).toEqual({ consumed: 5, success: true })
-  // expect(p.parse('1*2')).toEqual({ consumed: 3, success: true })
-  // expect(p.parse('(1*2)')).toEqual({ consumed: 5, success: true })
-  // expect(p.parse('1+2')).toEqual({ consumed: 3, success: true })
+  expect(p.parse('1+2')).toEqual({ consumed: 3, success: true })
+  expect(p.parse('(1+2)')).toEqual({ consumed: 5, success: true })
+  expect(p.parse('1*2')).toEqual({ consumed: 3, success: true })
+  expect(p.parse('(1*2)')).toEqual({ consumed: 5, success: true })
+  expect(p.parse('(1+(2*3))')).toEqual({ consumed: 9, success: true })
+  expect(p.parse('(1+(2*3))')).toEqual({ consumed: 9, success: true })
+  expect(p.parse('(1+(2*3)/4+(5-(6)))')).toEqual({
+    consumed: 19,
+    success: true,
+  })
+})
+
+test('Success', () => {
+  expect(p.parse('(1')).toEqual({ consumed: 2, success: false })
+  expect(p.parse('1)')).toEqual({ consumed: 1, success: false })
+  // expect(p.parse('1+')).toEqual({ consumed: 2, success: false })
+  expect(p.parse('(1+2')).toEqual({ consumed: 4, success: false })
+  // expect(p.parse('1*')).toEqual({ consumed: 3, success: false })
+  expect(p.parse('1*2)')).toEqual({ consumed: 3, success: false })
+  expect(p.parse('(1+(2*3)')).toEqual({ consumed: 8, success: false })
 })

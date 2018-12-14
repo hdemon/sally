@@ -34,8 +34,8 @@ export default class ZeroOrMore implements ParsingExpression {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpression.parse(stringToTry)
 
+    this.consumed += result.consumed
     if (result.success === true) {
-      this.consumed += result.consumed
       return this.__Parse(input, this.consumed)
     } else {
       return { success: true, consumed: this.consumed }
