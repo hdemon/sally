@@ -1,6 +1,6 @@
 import c from 'colors/safe'
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { terminal } from './terminal'
 
 export default class Sequence implements ParsingExpression {
@@ -26,7 +26,7 @@ export default class Sequence implements ParsingExpression {
     index: number,
     input: string,
     offset: number = 0
-  ): { success: boolean; consumed: number } {
+  ): ResultOfParsing {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpressions[index].parse(stringToTry)
 

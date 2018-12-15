@@ -1,4 +1,5 @@
 import c from 'colors/safe'
+import { ResultOfParsing } from '../core/parsing_expression'
 
 const logger = ({
   input,
@@ -7,7 +8,7 @@ const logger = ({
 }: {
   input: string
   nameOfExpression: string
-  result: { success: boolean; consumed: number }
+  result: ResultOfParsing
 }) => {
   if (global.enableLog === true) {
     // tslint:disable-next-line no-console

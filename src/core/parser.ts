@@ -1,5 +1,5 @@
 import l from '../core/logger'
-import { ParsingExpression } from './parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import Reference from './reference'
 
 export default class Parser {
@@ -23,7 +23,7 @@ export default class Parser {
     return new Reference(this, name)
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
     l({
       input,

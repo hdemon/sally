@@ -1,8 +1,8 @@
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
 export default class AnyChar implements ParsingExpression {
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const success = input.length >= 1
     const consumed = success ? 1 : 0
     l({

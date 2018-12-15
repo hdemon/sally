@@ -1,5 +1,5 @@
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { sequence } from './sequence'
 import { zeroOrMore } from './zero_or_more'
 
@@ -13,7 +13,7 @@ export default class OneOrMore implements ParsingExpression {
     ])
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
     l({
       input,
@@ -23,7 +23,7 @@ export default class OneOrMore implements ParsingExpression {
     return result
   }
 
-  public __Parse(input: string): { success: boolean; consumed: number } {
+  public __Parse(input: string): ResultOfParsing {
     const result = this.parsingExpression.parse(input)
     return { ...result }
   }

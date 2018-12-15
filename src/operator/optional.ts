@@ -1,7 +1,7 @@
 import { choice } from './choice'
 import { empty } from './empty'
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
 export default class Optional implements ParsingExpression {
   private parsingExpression: ParsingExpression
@@ -10,7 +10,7 @@ export default class Optional implements ParsingExpression {
     this.parsingExpression = choice([parsingExpression, empty()])
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
     l({
       input,
@@ -20,7 +20,7 @@ export default class Optional implements ParsingExpression {
     return result
   }
 
-  public __Parse(input: string): { success: boolean; consumed: number } {
+  public __Parse(input: string): ResultOfParsing {
     const result = this.parsingExpression.parse(input)
 
     return { ...result }

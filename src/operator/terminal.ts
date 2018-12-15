@@ -1,5 +1,5 @@
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
 export default class Terminal implements ParsingExpression {
   private character: string
@@ -8,7 +8,7 @@ export default class Terminal implements ParsingExpression {
     this.character = character
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const success = input.indexOf(this.character) === 0
     const consumed = success ? this.character.length : 0
     l({

@@ -1,7 +1,7 @@
 import { choice } from './choice'
 import { empty } from './empty'
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { sequence } from './sequence'
 
 export default class ZeroOrMore implements ParsingExpression {
@@ -17,7 +17,7 @@ export default class ZeroOrMore implements ParsingExpression {
     // ])
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input, 0)
     l({
       input,
@@ -27,10 +27,7 @@ export default class ZeroOrMore implements ParsingExpression {
     return result
   }
 
-  private __Parse(
-    input: string,
-    offset: number = 0
-  ): { success: boolean; consumed: number } {
+  private __Parse(input: string, offset: number = 0): ResultOfParsing {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpression.parse(stringToTry)
 

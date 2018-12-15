@@ -1,5 +1,5 @@
 import l from '../core/logger'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
 export default class Choice implements ParsingExpression {
   public consumed: number
@@ -9,17 +9,14 @@ export default class Choice implements ParsingExpression {
     this.parsingExpressions = parsingExpressions
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     this.consumed = 0
     const result = this.__Parse(0, input)
     l({ nameOfExpression: 'choice', input, result })
     return result
   }
 
-  private __Parse(
-    index: number,
-    input: string
-  ): { success: boolean; consumed: number } {
+  private __Parse(index: number, input: string): ResultOfParsing {
     const result = this.parsingExpressions[index].parse(input)
 
     this.consumed += result.consumed

@@ -1,5 +1,5 @@
 import c from 'colors/safe'
-import { ParsingExpression } from './parsing_expression'
+import { ParsingExpression, ResultOfParsing } from './parsing_expression'
 import Parser from './parser'
 
 export default class Reference implements ParsingExpression {
@@ -11,7 +11,7 @@ export default class Reference implements ParsingExpression {
     this.definitionName = definitionName
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     console.log(`Try to parse as ${c.cyan(this.definitionName)}`)
     const result = this.referenceToParser.definitions[
       this.definitionName

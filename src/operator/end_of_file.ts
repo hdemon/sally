@@ -1,7 +1,7 @@
 import { anyChar } from './any_char'
 import l from '../core/logger'
 import { notPredicate } from './not_predicate'
-import { ParsingExpression } from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
 export default class EndOfFile implements ParsingExpression {
   private parsingExpression: ParsingExpression
@@ -10,7 +10,7 @@ export default class EndOfFile implements ParsingExpression {
     this.parsingExpression = notPredicate(anyChar())
   }
 
-  public parse(input: string): { success: boolean; consumed: number } {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
     l({
       input,
@@ -20,7 +20,7 @@ export default class EndOfFile implements ParsingExpression {
     return result
   }
 
-  public __Parse(input: string): { success: boolean; consumed: number } {
+  public __Parse(input: string): ResultOfParsing {
     return this.parsingExpression.parse(input)
   }
 }
