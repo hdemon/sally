@@ -1,21 +1,13 @@
 import l from '../core/logger'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import StatelessParsingExpressionClass from '../core/stateless_parsing_expression'
 
-export default class NotPredicate implements ParsingExpression {
-  private parsingExpression: ParsingExpression
+export default class NotPredicate extends StatelessParsingExpressionClass {
+  public nameOfOperator = 'notPredicate'
 
-  constructor(parsingExpression: ParsingExpression) {
-    this.parsingExpression = parsingExpression
-  }
-
-  public parse(input: string): ResultOfParsing {
+  public __Parse(input: string): ResultOfParsing {
     const result = this.parsingExpression.parse(input)
     const success = !result.success
-    l({
-      input,
-      nameOfExpression: 'notPredicate',
-      result: { success, consumed: 0 },
-    })
     return { success, consumed: 0 }
   }
 }

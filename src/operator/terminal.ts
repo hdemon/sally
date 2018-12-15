@@ -9,13 +9,18 @@ export default class Terminal implements ParsingExpression {
   }
 
   public parse(input: string): ResultOfParsing {
-    const success = input.indexOf(this.character) === 0
-    const consumed = success ? this.character.length : 0
+    const result = this.__Parse(input)
     l({
       input,
       nameOfExpression: `terminal: ${this.character}`,
-      result: { success, consumed },
+      result: { ...result },
     })
+    return result
+  }
+
+  public __Parse(input: string): ResultOfParsing {
+    const success = input.indexOf(this.character) === 0
+    const consumed = success ? this.character.length : 0
     return { success, consumed }
   }
 }
