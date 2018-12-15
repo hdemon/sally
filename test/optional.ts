@@ -1,4 +1,4 @@
-import { optional } from '../src/operator/optional'
+import { optional } from '../src/alias/optional'
 import { terminal } from '../src/operator/terminal'
 
 let parser: any

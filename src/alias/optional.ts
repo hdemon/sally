@@ -1,12 +1,15 @@
-import { choice } from './choice'
-import { empty } from './empty'
+import { choice } from '../operator/choice'
+import { empty } from '../operator/empty'
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import {
+  ParsingExpression,
+  ResultOfParsing,
+  Alias,
+} from '../core/parsing_expression'
 
-export default class Optional implements ParsingExpression {
-  private parsingExpression: ParsingExpression
-
+export default class Optional extends Alias {
   constructor(parsingExpression: ParsingExpression) {
+    super()
     this.parsingExpression = choice([parsingExpression, empty()])
   }
 
@@ -18,12 +21,6 @@ export default class Optional implements ParsingExpression {
       result,
     })
     return result
-  }
-
-  public __Parse(input: string): ResultOfParsing {
-    const result = this.parsingExpression.parse(input)
-
-    return { ...result }
   }
 }
 

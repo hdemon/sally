@@ -1,5 +1,5 @@
 import { anyChar } from '../src/operator/any_char'
-import { endOfFile } from '../src/operator/end_of_file'
+import { endOfFile } from '../src/alias/end_of_file'
 import { sequence } from '../src/operator/sequence'
 
 test('Success cases', () => {

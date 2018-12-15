@@ -1,4 +1,4 @@
-import { endOfFile } from '../src/operator/end_of_file'
+import { endOfFile } from '../src/alias/end_of_file'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 

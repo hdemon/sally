@@ -1,12 +1,15 @@
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
-import { sequence } from './sequence'
+import {
+  ParsingExpression,
+  ResultOfParsing,
+  Alias,
+} from '../core/parsing_expression'
+import { sequence } from '../operator/sequence'
 import { zeroOrMore } from './zero_or_more'
 
-export default class OneOrMore implements ParsingExpression {
-  private parsingExpression: ParsingExpression
-
+export default class OneOrMore extends Alias {
   constructor(parsingExpression: ParsingExpression) {
+    super()
     this.parsingExpression = sequence([
       parsingExpression,
       zeroOrMore(parsingExpression),
@@ -21,11 +24,6 @@ export default class OneOrMore implements ParsingExpression {
       result,
     })
     return result
-  }
-
-  public __Parse(input: string): ResultOfParsing {
-    const result = this.parsingExpression.parse(input)
-    return { ...result }
   }
 }
 

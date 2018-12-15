@@ -1,8 +1,8 @@
-import { choice } from './choice'
-import { empty } from './empty'
+import { choice } from '../operator/choice'
+import { empty } from '../operator/empty'
 import l from '../core/logger'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
-import { sequence } from './sequence'
+import { sequence } from '../operator/sequence'
 
 export default class ZeroOrMore implements ParsingExpression {
   private parsingExpression: ParsingExpression

@@ -1,7 +1,7 @@
-import { endOfFile } from '../src/operator/end_of_file'
+import { endOfFile } from '../src/alias/end_of_file'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
-import { zeroOrMore } from '../src/operator/zero_or_more'
+import { zeroOrMore } from '../src/alias/zero_or_more'
 
 let parser: any
 

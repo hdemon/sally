@@ -1,4 +1,4 @@
-import { endOfFile } from '../src/operator/end_of_file'
+import { endOfFile } from '../src/alias/end_of_file'
 
 test('Success cases', () => {
   expect(endOfFile().parse('')).toEqual({

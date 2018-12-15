@@ -15,8 +15,8 @@ export default class Parser {
     this.definitionNameStartFrom = name
   }
 
-  public define(name: string, callback: () => ParsingExpression): void {
-    this.definitions[name] = callback
+  public define(name: string, getDefinition: () => ParsingExpression): void {
+    this.definitions[name] = getDefinition
   }
 
   public refer(name: string): Reference {

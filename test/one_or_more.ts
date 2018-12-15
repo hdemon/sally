@@ -1,4 +1,4 @@
-import { oneOrMore } from '../src/operator/one_or_more'
+import { oneOrMore } from '../src/alias/one_or_more'
 import { terminal } from '../src/operator/terminal'
 
 let parser: any
