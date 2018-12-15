@@ -2,27 +2,12 @@ import c from 'colors/safe'
 import l from '../core/logger'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { terminal } from './terminal'
+import StatefulParsingExpression from '../core/stateful_parsing_expression'
 
-export default class Sequence implements ParsingExpression {
-  private parsingExpressions: ParsingExpression[]
-  private consumed: number
+export default class Sequence extends StatefulParsingExpression {
+  public nameOfOperator = 'sequence'
 
-  constructor(parsingExpressions: ParsingExpression[]) {
-    this.parsingExpressions = parsingExpressions
-  }
-
-  public parse(input: string) {
-    this.consumed = 0
-    const result = this.__Parse(0, input)
-    l({
-      input,
-      nameOfExpression: 'sequence',
-      result,
-    })
-    return result
-  }
-
-  private __Parse(
+  public __Parse(
     index: number,
     input: string,
     offset: number = 0

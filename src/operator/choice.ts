@@ -1,22 +1,11 @@
 import l from '../core/logger'
+import StatefulParsingExpression from '../core/stateful_parsing_expression'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 
-export default class Choice implements ParsingExpression {
-  public consumed: number
-  public parsingExpressions: ParsingExpression[]
+export default class Choice extends StatefulParsingExpression {
+  public nameOfOperator = 'choice'
 
-  constructor(parsingExpressions: ParsingExpression[]) {
-    this.parsingExpressions = parsingExpressions
-  }
-
-  public parse(input: string): ResultOfParsing {
-    this.consumed = 0
-    const result = this.__Parse(0, input)
-    l({ nameOfExpression: 'choice', input, result })
-    return result
-  }
-
-  private __Parse(index: number, input: string): ResultOfParsing {
+  public __Parse(index: number, input: string): ResultOfParsing {
     const result = this.parsingExpressions[index].parse(input)
 
     this.consumed += result.consumed
