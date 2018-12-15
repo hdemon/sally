@@ -14,7 +14,7 @@ export default abstract class StatefulParsingExpression
   public parse(input: string): ResultOfParsing {
     this.consumed = 0
     const result = this.__Parse(0, input)
-    l({ nameOfExpression: this.nameOfOperator, input, result })
+    l.traceParsing({ nameOfExpression: this.nameOfOperator, input, result })
     return result
   }
 

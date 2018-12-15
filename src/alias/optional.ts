@@ -15,7 +15,7 @@ export default class Optional extends Alias {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: 'optional',
       result,

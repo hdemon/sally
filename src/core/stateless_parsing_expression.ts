@@ -12,7 +12,7 @@ export default abstract class StatelessParsingExpressionClass
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l({ nameOfExpression: this.nameOfOperator, input, result })
+    l.traceParsing({ nameOfExpression: this.nameOfOperator, input, result })
     return result
   }
 

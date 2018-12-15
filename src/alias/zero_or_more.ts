@@ -19,7 +19,7 @@ export default class ZeroOrMore implements ParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input, 0)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: 'zero_or_more',
       result,

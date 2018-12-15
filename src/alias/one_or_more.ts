@@ -18,7 +18,7 @@ export default class OneOrMore extends Alias {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: 'one_or_more',
       result,

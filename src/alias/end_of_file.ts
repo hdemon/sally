@@ -15,7 +15,7 @@ export default class EndOfFile extends Alias {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: 'end_of_file',
       result,

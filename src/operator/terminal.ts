@@ -10,7 +10,7 @@ export default class Terminal implements ParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: `terminal: ${this.character}`,
       result: { ...result },

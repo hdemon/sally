@@ -25,7 +25,7 @@ export default class Parser {
 
   public parse(input: string): ResultOfParsing {
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
-    l({
+    l.traceParsing({
       input,
       nameOfExpression: 'end_of_file',
       result,
