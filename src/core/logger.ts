@@ -1,7 +1,7 @@
 import c from 'colors/safe'
 import { ResultOfParsing } from '../core/parsing_expression'
 
-const logger = ({
+const log = ({
   input,
   nameOfExpression,
   result,
@@ -10,6 +10,7 @@ const logger = ({
   nameOfExpression: string
   result: ResultOfParsing
 }) => {
+  // FIXME: Think the better way to toggle an availability of logging
   if (global.enableLog === true) {
     // tslint:disable-next-line no-console
     console.log(
@@ -22,4 +23,4 @@ const logger = ({
   }
 }
 
-export default logger
+export default log
