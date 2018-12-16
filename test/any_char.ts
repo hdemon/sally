@@ -19,12 +19,3 @@ test('Failure cases', () => {
     success: false,
   })
 })
-
-describe('With EndOfFile Operator', () => {
-  test('Failure cases', () => {
-    expect(sequence([anyChar(), endOfFile()]).parse('123')).toEqual({
-      consumed: 1,
-      success: false,
-    })
-  })
-})

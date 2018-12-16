@@ -14,13 +14,3 @@ describe('Choice', () => {
     expect(parser.parse('ghi')).toEqual({ success: false, consumed: 0 })
   })
 })
-
-describe('With EndOfFile Operator', () => {
-  test('Failure cases', () => {
-    const parser = sequence([
-      choice([terminal('a'), terminal('ab')]),
-      endOfFile(),
-    ])
-    expect(parser.parse('ab')).toEqual({ success: false, consumed: 1 })
-  })
-})

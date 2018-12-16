@@ -22,11 +22,3 @@ test("Success but some characters won't be consumed.", () => {
 test('Success but no characters will be consumed.', () => {
   expect(parser().parse('def')).toEqual({ success: true, consumed: 0 })
 })
-
-describe('With EndOfFile Operator', () => {
-  test('Failure cases', () => {
-    parser = () => sequence([zeroOrMore(terminal('abc')), endOfFile()])
-    expect(parser().parse('abcdef')).toEqual({ success: false, consumed: 3 })
-    expect(parser().parse('def')).toEqual({ success: false, consumed: 0 })
-  })
-})

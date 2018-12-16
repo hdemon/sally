@@ -1,8 +1,7 @@
+import { oneOrMore } from '../src/alias/one_or_more'
+import { zeroOrMore } from '../src/alias/zero_or_more'
 import Parser from '../src/core/parser'
 import { choice } from '../src/operator/choice'
-import { endOfFile } from '../src/operator/end_of_file'
-import { oneOrMore } from '../src/operator/one_or_more'
-import { zeroOrMore } from '../src/operator/zero_or_more'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 
@@ -15,7 +14,7 @@ p.define('slash', () => terminal('/'))
 p.define('leftParenthesis', () => terminal('('))
 p.define('rightParenthesis', () => terminal(')'))
 
-p.define('arithmetic', () => sequence([p.refer('expression'), endOfFile()]))
+p.define('arithmetic', () => p.refer('expression'))
 
 // Expression
 //   = Term (("+" / "-")  Term)*
@@ -90,12 +89,14 @@ test('Success', () => {
   })
 })
 
-test('Success', () => {
+test('Failure', () => {
   expect(p.parse('(1')).toEqual({ consumed: 2, success: false })
   expect(p.parse('1)')).toEqual({ consumed: 1, success: false })
-  // expect(p.parse('1+')).toEqual({ consumed: 2, success: false })
+  // It returns success: true 😨
+  expect(p.parse('1+')).toEqual({ consumed: 2, success: false })
   expect(p.parse('(1+2')).toEqual({ consumed: 4, success: false })
-  // expect(p.parse('1*')).toEqual({ consumed: 3, success: false })
+  // It returns success: true 😨
+  expect(p.parse('1*')).toEqual({ consumed: 3, success: false })
   expect(p.parse('1*2)')).toEqual({ consumed: 3, success: false })
   expect(p.parse('(1+(2*3)')).toEqual({ consumed: 8, success: false })
 })

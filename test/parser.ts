@@ -4,22 +4,16 @@ import { endOfFile } from '../src/alias/end_of_file'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 
-describe('1', () => {
-  test('1', () => {
-    const p = new Parser()
-    p.define('expression', () => terminal('abc'))
-    p.startFrom('expression')
+describe('`parse` method', () => {
+  const p = new Parser()
+  p.define('expression', () => terminal('abc'))
+  p.startFrom('expression')
 
+  test('It returns false when all the inputted string has been consumed.', () => {
     expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
-    expect(p.parse('abcd')).toEqual({ success: true, consumed: 3 })
   })
 
-  test('2', () => {
-    const p = new Parser()
-    p.define('expression', () => sequence([terminal('abc'), endOfFile()]))
-    p.startFrom('expression')
-
-    expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
+  test("It returns false when all the inputted string hasn't been consumed.", () => {
     expect(p.parse('abcd')).toEqual({ success: false, consumed: 3 })
   })
 
