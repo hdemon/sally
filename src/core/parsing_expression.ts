@@ -3,6 +3,7 @@ export interface ResultOfParsing {
   success: boolean
   consumed: number
   terminal?: string
+  definition?: boolean
   resultOfChildren: ResultOfParsing[]
 }
 
@@ -14,6 +15,7 @@ export interface RawResultOfParsing {
 }
 export interface ParsingExpression {
   operator: string
+  definition?: boolean
   parse(input: string): ResultOfParsing
 }
 

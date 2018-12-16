@@ -1,8 +1,10 @@
+import Memo from '../core/memo'
 import {
   ParsingExpression,
   RawResultOfParsing,
   ResultOfParsing,
 } from '../core/parsing_expression'
+import Reference from '../core/reference'
 import StatefulParsingExpression from '../core/stateful_parsing_expression'
 
 export default class Choice extends StatefulParsingExpression {
@@ -10,8 +12,9 @@ export default class Choice extends StatefulParsingExpression {
   public results: ResultOfParsing[] = []
 
   public __Parse(index: number, input: string): RawResultOfParsing {
-    const result = this.parsingExpressions[index].parse(input)
+    const p = this.parsingExpressions[index]
 
+    const result = this.parsingExpressions[index].parse(input)
     this.results.push(result)
 
     if (result.success === true) {
