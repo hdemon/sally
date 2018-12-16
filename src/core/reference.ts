@@ -16,11 +16,6 @@ export default class Reference implements ParsingExpression {
       this.definitionName
     ]().parse(input)
 
-    return {
-      operator: this.definitionName,
-      success: result.success,
-      consumed: result.consumed,
-      resultOfChildren: [result],
-    }
+    return { ...result, operator: this.definitionName }
   }
 }

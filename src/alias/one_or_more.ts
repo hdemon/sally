@@ -16,13 +16,7 @@ export default class OneOrMore extends Alias {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    // return { operator: this.operator, ...result }
-    return {
-      operator: this.operator,
-      success: result.success,
-      consumed: result.consumed,
-      resultOfChildren: result.resultOfChildren,
-    }
+    return { ...result, operator: this.operator }
   }
 }
 

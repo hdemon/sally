@@ -15,7 +15,7 @@ export default abstract class StatelessParsingExpression
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    return { operator: this.operator, ...result }
+    return { ...result, operator: this.operator }
   }
 
   public abstract __Parse(input: string): RawResultOfParsing

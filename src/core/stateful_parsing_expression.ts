@@ -17,7 +17,7 @@ export default abstract class StatefulParsingExpression
   public parse(input: string): ResultOfParsing {
     this.consumed = 0
     const result = this.__Parse(0, input)
-    return { operator: this.operator, ...result }
+    return { ...result, operator: this.operator }
   }
 
   public abstract __Parse(index: number, input: string): RawResultOfParsing

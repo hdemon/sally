@@ -1,7 +1,7 @@
 import ParsingExpression, {
-  RawResultOfParsing,
   ResultOfParsing,
-} from '../core/parsing_expression'
+  RawResultOfParsing,
+} from './parsing_expression'
 
 export default class LazyParsingExpression {
   public parsingExpression: () => ParsingExpression
@@ -13,7 +13,7 @@ export default class LazyParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    return { operator: this.operator, ...result }
+    return { ...result, operator: this.operator }
   }
 
   public __Parse(input: string): RawResultOfParsing {
