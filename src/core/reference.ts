@@ -4,6 +4,7 @@ import { ParsingExpression, ResultOfParsing } from './parsing_expression'
 export default class Reference implements ParsingExpression {
   public referenceToParser: Parser
   public definitionName: string
+  public operator: string
 
   constructor(referenceToParser: Parser, definitionName: string) {
     this.referenceToParser = referenceToParser

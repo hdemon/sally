@@ -20,7 +20,7 @@ export default class Terminal implements ParsingExpression {
   public __Parse(input: string): RawResultOfParsing {
     const success = input.indexOf(this.character) === 0
     const consumed = success ? this.character.length : 0
-    return { success, consumed, resultOfChildren: null }
+    return { success, consumed, terminal: this.character, resultOfChildren: [] }
   }
 }
 

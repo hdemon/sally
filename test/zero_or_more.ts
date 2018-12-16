@@ -1,5 +1,4 @@
 import { zeroOrMore } from '../src/alias/zero_or_more'
-import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 
 let parser: any
@@ -15,9 +14,12 @@ test('Success and all characters will be consumed.', () => {
 })
 
 test("Success but some characters won't be consumed.", () => {
-  expect(parser().parse('abcdef')).toMatchObject({ success: true, consumed: 3 })
+  expect(parser().parse('abcdef')).toMatchObject({
+    success: true,
+    consumed: 3,
+  })
 })
 
-test('Success but no characters will be consumed.', () => {
+test('Failure and no characters will be consumed.', () => {
   expect(parser().parse('def')).toMatchObject({ success: true, consumed: 0 })
 })

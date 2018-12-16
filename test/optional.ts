@@ -11,6 +11,6 @@ test('Success and all characters will be consumed.', () => {
   expect(parser.parse('abc')).toMatchObject({ success: true, consumed: 3 })
 })
 
-test('Failure.', () => {
-  expect(parser.parse('def')).toMatchObject({ success: false, consumed: 0 })
+test("Success and some characters won't be consumed.", () => {
+  expect(parser.parse('def')).toMatchObject({ success: true, consumed: 0 })
 })

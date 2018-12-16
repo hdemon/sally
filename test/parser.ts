@@ -3,7 +3,6 @@ import { choice } from '../src/operator/choice'
 import { empty } from '../src/operator/empty'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
-const jsome = require('jsome')
 
 describe('`parse` method', () => {
   const p = new Parser()

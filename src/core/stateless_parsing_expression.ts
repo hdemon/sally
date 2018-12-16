@@ -4,7 +4,7 @@ import {
   ResultOfParsing,
 } from '../core/parsing_expression'
 
-export default abstract class StatelessParsingExpressionClass
+export default abstract class StatelessParsingExpression
   implements ParsingExpression {
   public parsingExpression: ParsingExpression
   public operator: string

@@ -7,7 +7,7 @@ export default class AnyChar extends StatelessParsingExpressionClass {
   public __Parse(input: string): RawResultOfParsing {
     const success = input.length >= 1
     const consumed = success ? 1 : 0
-    return { success, consumed, resultOfChildren: null }
+    return { success, consumed, resultOfChildren: [] }
   }
 }
 

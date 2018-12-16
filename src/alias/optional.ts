@@ -1,11 +1,7 @@
-import l from '../core/logger'
-import {
-  Alias,
-  ParsingExpression,
-  RawResultOfParsing,
-} from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { choice } from '../operator/choice'
 import { empty } from '../operator/empty'
+import Alias from '../core/alias'
 
 export default class Optional extends Alias {
   public operator = 'Optional'
@@ -15,14 +11,16 @@ export default class Optional extends Alias {
     this.parsingExpression = choice([parsingExpression, empty()])
   }
 
-  public parse(input: string): RawResultOfParsing {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    // l.traceParsing({
-    //   input,
-    //   nameOfExpression: 'optional',
-    //   result,
-    // })
-    return { operator: this.operator, ...result }
+    // return { operator: this.operator, ...result }
+    // return { ...result, operator: this.operator }
+    return {
+      operator: this.operator,
+      success: result.success,
+      consumed: result.consumed,
+      resultOfChildren: result.resultOfChildren,
+    }
   }
 }
 

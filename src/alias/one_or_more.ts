@@ -1,10 +1,7 @@
-import {
-  Alias,
-  ParsingExpression,
-  ResultOfParsing,
-} from '../core/parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { sequence } from '../operator/sequence'
 import { zeroOrMore } from './zero_or_more'
+import Alias from '../core/alias'
 
 export default class OneOrMore extends Alias {
   public operator = 'one_or_more'
@@ -19,12 +16,13 @@ export default class OneOrMore extends Alias {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    // l.traceParsing({
-    //   input,
-    //   nameOfExpression: 'one_or_more',
-    //   result,
-    // })
-    return { operator: this.operator, ...result }
+    // return { operator: this.operator, ...result }
+    return {
+      operator: this.operator,
+      success: result.success,
+      consumed: result.consumed,
+      resultOfChildren: result.resultOfChildren,
+    }
   }
 }
 

@@ -7,8 +7,7 @@
     "prettier": [true],
     "no-var-keyword": true,
     "prefer-const": true,
-    "interface-name": false,
-    "object-literal-sort-keys": false
+    "interface-name": false
   },
   "linterOptions": {
     "exclude": [

@@ -1,11 +1,10 @@
-import l from '../core/logger'
 import {
   ParsingExpression,
   RawResultOfParsing,
 } from '../core/parsing_expression'
-import StatelessParsingExpressionClass from '../core/stateless_parsing_expression'
+import StatelessParsingExpression from '../core/stateless_parsing_expression'
 
-export default class NotPredicate extends StatelessParsingExpressionClass {
+export default class NotPredicate extends StatelessParsingExpression {
   public nameOfOperator = 'notPredicate'
 
   public __Parse(input: string): RawResultOfParsing {
