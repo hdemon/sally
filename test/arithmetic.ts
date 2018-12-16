@@ -4,6 +4,7 @@ import Parser from '../src/core/parser'
 import { choice } from '../src/operator/choice'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
+const jsome = require('jsome')
 
 const p = new Parser()
 
@@ -93,6 +94,7 @@ test('Failure', () => {
   expect(p.parse('(1')).toMatchObject({ consumed: 2, success: false })
   expect(p.parse('1)')).toMatchObject({ consumed: 1, success: false })
   // It returns success: true 😨
+  jsome(p.parse('1+'))
   expect(p.parse('1+')).toMatchObject({ consumed: 2, success: false })
   expect(p.parse('(1+2')).toMatchObject({ consumed: 4, success: false })
   // It returns success: true 😨

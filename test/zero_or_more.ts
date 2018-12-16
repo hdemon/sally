@@ -1,6 +1,6 @@
+import { zeroOrMore } from '../src/alias/zero_or_more'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
-import { zeroOrMore } from '../src/alias/zero_or_more'
 
 let parser: any
 

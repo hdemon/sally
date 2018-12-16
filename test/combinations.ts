@@ -1,6 +1,6 @@
+import { zeroOrMore } from '../src/alias/zero_or_more'
 import { choice } from '../src/operator/choice'
 import { terminal } from '../src/operator/terminal'
-import { zeroOrMore } from '../src/alias/zero_or_more'
 
 describe('1', () => {
   let parser: any

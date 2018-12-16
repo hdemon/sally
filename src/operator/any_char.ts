@@ -1,4 +1,3 @@
-import l from '../core/logger'
 import { RawResultOfParsing } from '../core/parsing_expression'
 import StatelessParsingExpressionClass from '../core/stateless_parsing_expression'
 

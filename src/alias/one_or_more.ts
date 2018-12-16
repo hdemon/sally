@@ -1,8 +1,7 @@
-import l from '../core/logger'
 import {
   Alias,
   ParsingExpression,
-  RawResultOfParsing,
+  ResultOfParsing,
 } from '../core/parsing_expression'
 import { sequence } from '../operator/sequence'
 import { zeroOrMore } from './zero_or_more'
@@ -18,7 +17,7 @@ export default class OneOrMore extends Alias {
     ])
   }
 
-  public parse(input: string): RawResultOfParsing {
+  public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
     // l.traceParsing({
     //   input,

@@ -22,9 +22,9 @@ export default class Choice extends StatefulParsingExpression {
         return this.__Parse(index + 1, input)
       } else {
         return {
+          success: false,
           consumed: this.consumed,
           resultOfChildren: [result],
-          success: false,
         }
       }
     }

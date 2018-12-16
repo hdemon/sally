@@ -1,4 +1,3 @@
-import c from 'colors/safe'
 import Parser from './parser'
 import { ParsingExpression, ResultOfParsing } from './parsing_expression'
 

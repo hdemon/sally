@@ -24,14 +24,6 @@ class Logger {
       )
     }
   }
-
-  public enable() {
-    this.isAvailable = true
-  }
-
-  public disable() {
-    this.isAvailable = false
-  }
 }
 
 export default new Logger()

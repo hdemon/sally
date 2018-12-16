@@ -1,4 +1,3 @@
-import l from '../core/logger'
 import {
   ParsingExpression,
   RawResultOfParsing,
