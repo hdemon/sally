@@ -75,28 +75,28 @@ p.define('digit', () =>
 p.startFrom('arithmetic')
 
 test('Success', () => {
-  expect(p.parse('1')).toEqual({ consumed: 1, success: true })
-  expect(p.parse('(1)')).toEqual({ consumed: 3, success: true })
-  expect(p.parse('1+2')).toEqual({ consumed: 3, success: true })
-  expect(p.parse('(1+2)')).toEqual({ consumed: 5, success: true })
-  expect(p.parse('1*2')).toEqual({ consumed: 3, success: true })
-  expect(p.parse('(1*2)')).toEqual({ consumed: 5, success: true })
-  expect(p.parse('(1+(2*3))')).toEqual({ consumed: 9, success: true })
-  expect(p.parse('(1+(2*3))')).toEqual({ consumed: 9, success: true })
-  expect(p.parse('(1+(2*3)/4+(5-(6)))')).toEqual({
+  expect(p.parse('1')).toMatchObject({ consumed: 1, success: true })
+  expect(p.parse('(1)')).toMatchObject({ consumed: 3, success: true })
+  expect(p.parse('1+2')).toMatchObject({ consumed: 3, success: true })
+  expect(p.parse('(1+2)')).toMatchObject({ consumed: 5, success: true })
+  expect(p.parse('1*2')).toMatchObject({ consumed: 3, success: true })
+  expect(p.parse('(1*2)')).toMatchObject({ consumed: 5, success: true })
+  expect(p.parse('(1+(2*3))')).toMatchObject({ consumed: 9, success: true })
+  expect(p.parse('(1+(2*3))')).toMatchObject({ consumed: 9, success: true })
+  expect(p.parse('(1+(2*3)/4+(5-(6)))')).toMatchObject({
     consumed: 19,
     success: true,
   })
 })
 
 test('Failure', () => {
-  expect(p.parse('(1')).toEqual({ consumed: 2, success: false })
-  expect(p.parse('1)')).toEqual({ consumed: 1, success: false })
+  expect(p.parse('(1')).toMatchObject({ consumed: 2, success: false })
+  expect(p.parse('1)')).toMatchObject({ consumed: 1, success: false })
   // It returns success: true 😨
-  expect(p.parse('1+')).toEqual({ consumed: 2, success: false })
-  expect(p.parse('(1+2')).toEqual({ consumed: 4, success: false })
+  expect(p.parse('1+')).toMatchObject({ consumed: 2, success: false })
+  expect(p.parse('(1+2')).toMatchObject({ consumed: 4, success: false })
   // It returns success: true 😨
-  expect(p.parse('1*')).toEqual({ consumed: 3, success: false })
-  expect(p.parse('1*2)')).toEqual({ consumed: 3, success: false })
-  expect(p.parse('(1+(2*3)')).toEqual({ consumed: 8, success: false })
+  expect(p.parse('1*')).toMatchObject({ consumed: 3, success: false })
+  expect(p.parse('1*2)')).toMatchObject({ consumed: 3, success: false })
+  expect(p.parse('(1+(2*3)')).toMatchObject({ consumed: 8, success: false })
 })

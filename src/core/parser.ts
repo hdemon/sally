@@ -26,6 +26,6 @@ export default class Parser {
   public parse(input: string): ResultOfParsing {
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
     const success = result.consumed === input.length && result.success === true
-    return { success, consumed: result.consumed }
+    return { success, consumed: result.consumed, resultOfChild: result }
   }
 }

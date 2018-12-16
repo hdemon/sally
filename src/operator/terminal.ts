@@ -21,7 +21,7 @@ export default class Terminal implements ParsingExpression {
   public __Parse(input: string): ResultOfParsing {
     const success = input.indexOf(this.character) === 0
     const consumed = success ? this.character.length : 0
-    return { success, consumed }
+    return { success, consumed, resultOfChild: null }
   }
 }
 

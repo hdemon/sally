@@ -10,13 +10,19 @@ describe('1', () => {
   })
 
   test('Success cases', () => {
-    expect(parser().parse('')).toEqual({ success: true, consumed: 0 })
-    expect(parser().parse('abc')).toEqual({ success: true, consumed: 3 })
-    expect(parser().parse('abcabcdef')).toEqual({ success: true, consumed: 9 })
-    expect(parser().parse('abcdefabcdef')).toEqual({
+    expect(parser().parse('')).toMatchObject({ success: true, consumed: 0 })
+    expect(parser().parse('abc')).toMatchObject({ success: true, consumed: 3 })
+    expect(parser().parse('abcabcdef')).toMatchObject({
+      success: true,
+      consumed: 9,
+    })
+    expect(parser().parse('abcdefabcdef')).toMatchObject({
       consumed: 12,
       success: true,
     })
-    expect(parser().parse('abcde')).toEqual({ success: true, consumed: 3 })
+    expect(parser().parse('abcde')).toMatchObject({
+      success: true,
+      consumed: 3,
+    })
   })
 })

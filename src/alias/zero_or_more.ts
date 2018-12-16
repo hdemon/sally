@@ -32,7 +32,7 @@ export default class ZeroOrMore implements ParsingExpression {
     if (result.success === true) {
       return this.__Parse(input, this.consumed)
     } else {
-      return { success: true, consumed: this.consumed }
+      return { success: true, consumed: this.consumed, resultOfChild: result }
     }
   }
 }

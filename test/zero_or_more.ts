@@ -10,15 +10,15 @@ beforeEach(() => {
 })
 
 test('Success and all characters will be consumed.', () => {
-  expect(parser().parse('')).toEqual({ success: true, consumed: 0 })
-  expect(parser().parse('abc')).toEqual({ success: true, consumed: 3 })
-  expect(parser().parse('abcabc')).toEqual({ success: true, consumed: 6 })
+  expect(parser().parse('')).toMatchObject({ success: true, consumed: 0 })
+  expect(parser().parse('abc')).toMatchObject({ success: true, consumed: 3 })
+  expect(parser().parse('abcabc')).toMatchObject({ success: true, consumed: 6 })
 })
 
 test("Success but some characters won't be consumed.", () => {
-  expect(parser().parse('abcdef')).toEqual({ success: true, consumed: 3 })
+  expect(parser().parse('abcdef')).toMatchObject({ success: true, consumed: 3 })
 })
 
 test('Success but no characters will be consumed.', () => {
-  expect(parser().parse('def')).toEqual({ success: true, consumed: 0 })
+  expect(parser().parse('def')).toMatchObject({ success: true, consumed: 0 })
 })

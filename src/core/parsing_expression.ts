@@ -1,6 +1,7 @@
 export interface ResultOfParsing {
   success: boolean
   consumed: number
+  resultOfChild: ResultOfParsing
 }
 
 export interface ParsingExpression {

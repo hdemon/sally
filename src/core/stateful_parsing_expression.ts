@@ -5,7 +5,7 @@ export default abstract class StatefulParsingExpression
   implements ParsingExpression {
   public parsingExpressions: ParsingExpression[]
   public consumed: number
-  public nameOfOperator: string
+  public operator: string
 
   constructor(parsingExpressions: ParsingExpression[]) {
     this.parsingExpressions = parsingExpressions
@@ -14,7 +14,7 @@ export default abstract class StatefulParsingExpression
   public parse(input: string): ResultOfParsing {
     this.consumed = 0
     const result = this.__Parse(0, input)
-    l.traceParsing({ nameOfExpression: this.nameOfOperator, input, result })
+    l.traceParsing({ nameOfExpression: this.operator, input, result })
     return result
   }
 

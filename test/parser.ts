@@ -10,11 +10,11 @@ describe('`parse` method', () => {
   p.startFrom('expression')
 
   test('It returns false when all the inputted string has been consumed.', () => {
-    expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
+    expect(p.parse('abc')).toMatchObject({ success: true, consumed: 3 })
   })
 
   test("It returns false when all the inputted string hasn't been consumed.", () => {
-    expect(p.parse('abcd')).toEqual({ success: false, consumed: 3 })
+    expect(p.parse('abcd')).toMatchObject({ success: false, consumed: 3 })
   })
 
   test('3', () => {
@@ -24,10 +24,10 @@ describe('`parse` method', () => {
     )
     p.startFrom('expression')
 
-    expect(p.parse('abc')).toEqual({ success: true, consumed: 3 })
-    expect(p.parse('abcd')).toEqual({ success: false, consumed: 3 })
-    expect(p.parse('abcabc')).toEqual({ success: true, consumed: 6 })
-    expect(p.parse('abcabcd')).toEqual({ success: false, consumed: 6 })
-    expect(p.parse('abcabcabcd')).toEqual({ success: false, consumed: 9 })
+    expect(p.parse('abc')).toMatchObject({ success: true, consumed: 3 })
+    expect(p.parse('abcd')).toMatchObject({ success: false, consumed: 3 })
+    expect(p.parse('abcabc')).toMatchObject({ success: true, consumed: 6 })
+    expect(p.parse('abcabcd')).toMatchObject({ success: false, consumed: 6 })
+    expect(p.parse('abcabcabcd')).toMatchObject({ success: false, consumed: 9 })
   })
 })

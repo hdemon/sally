@@ -8,7 +8,7 @@ export default class NotPredicate extends StatelessParsingExpressionClass {
   public __Parse(input: string): ResultOfParsing {
     const result = this.parsingExpression.parse(input)
     const success = !result.success
-    return { success, consumed: 0 }
+    return { success, consumed: 0, resultOfChild: result }
   }
 }
 

@@ -9,18 +9,21 @@ beforeEach(() => {
 })
 
 test('Success and all characters will be consumed.', () => {
-  expect(parser.parse('abcdef')).toEqual({ success: true, consumed: 6 })
+  expect(parser.parse('abcdef')).toMatchObject({ success: true, consumed: 6 })
 })
 
 test("Success but some characters won't be consumed.", () => {
-  expect(parser.parse('abcdefghe')).toEqual({ success: true, consumed: 6 })
+  expect(parser.parse('abcdefghe')).toMatchObject({
+    success: true,
+    consumed: 6,
+  })
 })
 
 test('Failure but some characters will be consumed.', () => {
-  expect(parser.parse('abcde')).toEqual({ success: false, consumed: 3 })
+  expect(parser.parse('abcde')).toMatchObject({ success: false, consumed: 3 })
 })
 
 test('Failure and no characters will be consumed.', () => {
-  expect(parser.parse('def')).toEqual({ success: false, consumed: 0 })
-  expect(parser.parse('123')).toEqual({ success: false, consumed: 0 })
+  expect(parser.parse('def')).toMatchObject({ success: false, consumed: 0 })
+  expect(parser.parse('123')).toMatchObject({ success: false, consumed: 0 })
 })

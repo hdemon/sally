@@ -1,11 +1,8 @@
-import c from 'colors/safe'
-import l from '../core/logger'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import StatefulParsingExpression from '../core/stateful_parsing_expression'
-import { terminal } from './terminal'
 
 export default class Sequence extends StatefulParsingExpression {
-  public nameOfOperator = 'sequence'
+  public operator = 'sequence'
 
   public __Parse(
     index: number,
@@ -18,12 +15,12 @@ export default class Sequence extends StatefulParsingExpression {
     this.consumed += result.consumed
     if (result.success === true) {
       if (this.parsingExpressions.length === index + 1) {
-        return { success: true, consumed: this.consumed }
+        return { success: true, consumed: this.consumed, resultOfChild: result }
       } else {
         return this.__Parse(index + 1, input, this.consumed)
       }
     } else {
-      return { success: false, consumed: this.consumed }
+      return { success: false, consumed: this.consumed, resultOfChild: result }
     }
   }
 }
