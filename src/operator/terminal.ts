@@ -6,11 +6,11 @@ import {
 
 export default class Terminal implements ParsingExpression {
   public operator = 'terminal'
-  private character: string
 
   constructor(character: string) {
     this.character = character
   }
+  private character: string
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)

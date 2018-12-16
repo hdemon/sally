@@ -1,6 +1,6 @@
 import ParsingExpression, {
-  ResultOfParsing,
   RawResultOfParsing,
+  ResultOfParsing,
 } from './parsing_expression'
 
 export default class LazyParsingExpression {
