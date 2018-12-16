@@ -1,11 +1,10 @@
 {
   "name": "sally",
-  "version": "0.1.0",
-  "description": "PEG parser generator",
+  "version": "0.2.0",
+  "description": "PEG parser generator written in JavaScript",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "watch": "ts-node-dev --inspect --respawn --no-notify -- src/main.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "repository": {
@@ -19,9 +18,8 @@
   },
   "homepage": "https://github.com/hdemon/sally#readme",
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/traverse": "^0.6.32",
     "jest": "^23.6.0",
+    "jsome": "^2.5.0",
     "prettier": "1.15.3",
     "ts-jest": "^23.10.5",
     "ts-node-dev": "^1.0.0-pre.32",
@@ -32,8 +30,8 @@
   },
   "dependencies": {
     "@types/node": "^10.12.15",
-    "colors": "^1.3.3",
-    "jsome": "^2.5.0",
+    "@types/jest": "^23.3.10",
+    "@types/traverse": "^0.6.32",
     "traverse": "^0.6.6"
   }
 }
