@@ -8,14 +8,7 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": "src",
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "src/types/*",
-                "types/*"
-            ]
-        }
+        "baseUrl": "src"
     },
     "include": [
         "src/**/*",
