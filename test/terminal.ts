@@ -1,4 +1,3 @@
-import { endOfFile } from '../src/alias/end_of_file'
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 
@@ -21,14 +20,5 @@ test('Failure cases', () => {
   expect(terminal('123').parse('12')).toMatchObject({
     consumed: 0,
     success: false,
-  })
-})
-
-describe('With EndOfFile Operator', () => {
-  test('Failure cases', () => {
-    expect(sequence([terminal('12'), endOfFile()]).parse('123')).toMatchObject({
-      consumed: 2,
-      success: false,
-    })
   })
 })

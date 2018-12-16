@@ -1,8 +1,9 @@
 import Parser from '../src/core/parser'
 import { choice } from '../src/operator/choice'
-import { endOfFile } from '../src/alias/end_of_file'
+
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
+import { empty } from '../src/operator/empty'
 
 describe('`parse` method', () => {
   const p = new Parser()
@@ -20,7 +21,7 @@ describe('`parse` method', () => {
   test('3', () => {
     const p = new Parser()
     p.define('expression', () =>
-      sequence([terminal('abc'), choice([p.refer('expression'), endOfFile()])])
+      sequence([terminal('abc'), choice([p.refer('expression'), empty()])])
     )
     p.startFrom('expression')
 
