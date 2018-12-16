@@ -1,9 +1,9 @@
 import Parser from '../src/core/parser'
 import { choice } from '../src/operator/choice'
-
 import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 import { empty } from '../src/operator/empty'
+const jsome = require('jsome')
 
 describe('`parse` method', () => {
   const p = new Parser()
@@ -28,6 +28,7 @@ describe('`parse` method', () => {
     expect(p.parse('abc')).toMatchObject({ success: true, consumed: 3 })
     expect(p.parse('abcd')).toMatchObject({ success: false, consumed: 3 })
     expect(p.parse('abcabc')).toMatchObject({ success: true, consumed: 6 })
+    jsome(p.parse('abcabc'))
     expect(p.parse('abcabcd')).toMatchObject({ success: false, consumed: 6 })
     expect(p.parse('abcabcabcd')).toMatchObject({ success: false, consumed: 9 })
   })

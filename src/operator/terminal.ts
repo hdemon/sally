@@ -1,7 +1,12 @@
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import {
+  ParsingExpression,
+  ResultOfParsing,
+  RawResultOfParsing,
+} from '../core/parsing_expression'
 
 export default class Terminal implements ParsingExpression {
+  public operator = 'terminal'
   private character: string
 
   constructor(character: string) {
@@ -10,18 +15,13 @@ export default class Terminal implements ParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l.traceParsing({
-      input,
-      nameOfExpression: `terminal: ${this.character}`,
-      result: { ...result },
-    })
-    return result
+    return { operator: this.operator, ...result }
   }
 
-  public __Parse(input: string): ResultOfParsing {
+  public __Parse(input: string): RawResultOfParsing {
     const success = input.indexOf(this.character) === 0
     const consumed = success ? this.character.length : 0
-    return { success, consumed, resultOfChild: null }
+    return { success, consumed, resultOfChildren: null }
   }
 }
 

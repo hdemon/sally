@@ -1,9 +1,15 @@
 export interface ResultOfParsing {
+  operator: string
   success: boolean
   consumed: number
-  resultOfChild: ResultOfParsing
+  resultOfChildren: ResultOfParsing[]
 }
 
+export interface RawResultOfParsing {
+  success: boolean
+  consumed: number
+  resultOfChildren: ResultOfParsing[]
+}
 export interface ParsingExpression {
   parse(input: string): ResultOfParsing
 }

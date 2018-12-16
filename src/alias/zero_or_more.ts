@@ -1,7 +1,12 @@
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import {
+  ParsingExpression,
+  ResultOfParsing,
+  RawResultOfParsing,
+} from '../core/parsing_expression'
 
 export default class ZeroOrMore implements ParsingExpression {
+  public operator = 'zero_or_more'
   private parsingExpression: ParsingExpression
   private consumed: number
 
@@ -16,15 +21,15 @@ export default class ZeroOrMore implements ParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input, 0)
-    l.traceParsing({
-      input,
-      nameOfExpression: 'zero_or_more',
-      result,
-    })
-    return result
+    // l.traceParsing({
+    //   input,
+    //   nameOfExpression: 'zero_or_more',
+    //   result,
+    // })
+    return { operator: this.operator, ...result }
   }
 
-  private __Parse(input: string, offset: number = 0): ResultOfParsing {
+  private __Parse(input: string, offset: number = 0): RawResultOfParsing {
     const stringToTry = input.slice(offset)
     const result = this.parsingExpression.parse(stringToTry)
 
@@ -32,7 +37,11 @@ export default class ZeroOrMore implements ParsingExpression {
     if (result.success === true) {
       return this.__Parse(input, this.consumed)
     } else {
-      return { success: true, consumed: this.consumed, resultOfChild: result }
+      return {
+        success: true,
+        consumed: this.consumed,
+        resultOfChildren: [result],
+      }
     }
   }
 }

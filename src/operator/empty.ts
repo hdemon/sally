@@ -1,13 +1,13 @@
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import { RawResultOfParsing } from '../core/parsing_expression'
 import StatelessParsingExpressionClass from '../core/stateless_parsing_expression'
 
 export default class Empty extends StatelessParsingExpressionClass {
   public operator = 'emptry'
 
-  public __Parse(input: string): ResultOfParsing {
+  public __Parse(input: string): RawResultOfParsing {
     const success = input === ''
-    return { success, consumed: 0, resultOfChild: null }
+    return { success, consumed: 0, resultOfChildren: null }
   }
 }
 

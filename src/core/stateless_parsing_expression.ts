@@ -1,5 +1,9 @@
 import l from '../core/logger'
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import {
+  ParsingExpression,
+  RawResultOfParsing,
+  ResultOfParsing,
+} from '../core/parsing_expression'
 
 export default abstract class StatelessParsingExpressionClass
   implements ParsingExpression {
@@ -12,9 +16,8 @@ export default abstract class StatelessParsingExpressionClass
 
   public parse(input: string): ResultOfParsing {
     const result = this.__Parse(input)
-    l.traceParsing({ nameOfExpression: this.operator, input, result })
-    return result
+    return { operator: this.operator, ...result }
   }
 
-  public abstract __Parse(input: string): ResultOfParsing
+  public abstract __Parse(input: string): RawResultOfParsing
 }
