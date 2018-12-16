@@ -4,7 +4,7 @@ import { ResultOfParsing } from '../core/parsing_expression'
 class Logger {
   private isAvailable: boolean = false
 
-  traceParsing({
+  public traceParsing({
     input,
     nameOfExpression,
     result,
@@ -25,11 +25,11 @@ class Logger {
     }
   }
 
-  enable() {
+  public enable() {
     this.isAvailable = true
   }
 
-  disable() {
+  public disable() {
     this.isAvailable = false
   }
 }

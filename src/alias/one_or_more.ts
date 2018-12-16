@@ -1,8 +1,8 @@
 import l from '../core/logger'
 import {
+  Alias,
   ParsingExpression,
   ResultOfParsing,
-  Alias,
 } from '../core/parsing_expression'
 import { sequence } from '../operator/sequence'
 import { zeroOrMore } from './zero_or_more'

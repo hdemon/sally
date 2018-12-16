@@ -1,8 +1,8 @@
 import c from 'colors/safe'
 import l from '../core/logger'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
-import { terminal } from './terminal'
 import StatefulParsingExpression from '../core/stateful_parsing_expression'
+import { terminal } from './terminal'
 
 export default class Sequence extends StatefulParsingExpression {
   public nameOfOperator = 'sequence'

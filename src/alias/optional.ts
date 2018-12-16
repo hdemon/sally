@@ -1,11 +1,11 @@
-import { choice } from '../operator/choice'
-import { empty } from '../operator/empty'
 import l from '../core/logger'
 import {
+  Alias,
   ParsingExpression,
   ResultOfParsing,
-  Alias,
 } from '../core/parsing_expression'
+import { choice } from '../operator/choice'
+import { empty } from '../operator/empty'
 
 export default class Optional extends Alias {
   constructor(parsingExpression: ParsingExpression) {

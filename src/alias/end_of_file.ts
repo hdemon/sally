@@ -1,11 +1,7 @@
-import { anyChar } from '../operator/any_char'
 import l from '../core/logger'
+import { Alias, ResultOfParsing } from '../core/parsing_expression'
+import { anyChar } from '../operator/any_char'
 import { notPredicate } from '../operator/not_predicate'
-import {
-  ParsingExpression,
-  ResultOfParsing,
-  Alias,
-} from '../core/parsing_expression'
 
 export default class EndOfFile extends Alias {
   constructor() {

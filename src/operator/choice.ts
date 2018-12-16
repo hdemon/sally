@@ -1,6 +1,6 @@
 import l from '../core/logger'
-import StatefulParsingExpression from '../core/stateful_parsing_expression'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import StatefulParsingExpression from '../core/stateful_parsing_expression'
 
 export default class Choice extends StatefulParsingExpression {
   public nameOfOperator = 'choice'

@@ -1,6 +1,6 @@
 import c from 'colors/safe'
-import { ParsingExpression, ResultOfParsing } from './parsing_expression'
 import Parser from './parser'
+import { ParsingExpression, ResultOfParsing } from './parsing_expression'
 
 export default class Reference implements ParsingExpression {
   public referenceToParser: Parser
