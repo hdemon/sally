@@ -1,9 +1,9 @@
-import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
-import { sequence } from '../operator/sequence'
-import { empty } from '../operator/empty'
-import { choice } from '../operator/choice'
-import LazyParsingExpression from '../core/lazy_parsing_expression'
 import Alias from '../core/alias'
+import LazyParsingExpression from '../core/lazy_parsing_expression'
+import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
+import { choice } from '../operator/choice'
+import { empty } from '../operator/empty'
+import { sequence } from '../operator/sequence'
 
 export default class ZeroOrMore extends Alias {
   public operator = 'zero_or_more'

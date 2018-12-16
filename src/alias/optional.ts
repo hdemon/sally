@@ -1,7 +1,7 @@
+import Alias from '../core/alias'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { choice } from '../operator/choice'
 import { empty } from '../operator/empty'
-import Alias from '../core/alias'
 
 export default class Optional extends Alias {
   public operator = 'Optional'

@@ -1,7 +1,7 @@
 import {
   ParsingExpression,
-  ResultOfParsing,
   RawResultOfParsing,
+  ResultOfParsing,
 } from '../core/parsing_expression'
 import StatefulParsingExpression from '../core/stateful_parsing_expression'
 

@@ -1,7 +1,7 @@
+import Alias from '../core/alias'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import { sequence } from '../operator/sequence'
 import { zeroOrMore } from './zero_or_more'
-import Alias from '../core/alias'
 
 export default class OneOrMore extends Alias {
   public operator = 'one_or_more'

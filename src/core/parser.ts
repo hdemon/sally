@@ -55,12 +55,13 @@ export default class Parser {
   ): any {
     return traverse(resultOfParsing).map(function(result: ResultOfParsing) {
       // this.update({ result })
-      if (result.resultOfChildren)
+      if (result.resultOfChildren) {
         this.update({
-          input: input,
+          input,
           stringAfterConsumed: input.slice(result.consumed),
           ...result,
         })
+      }
     })
   }
 }
