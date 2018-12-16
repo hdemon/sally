@@ -18,16 +18,19 @@ describe('`parse` method', () => {
   })
 
   test('3', () => {
-    const p = new Parser()
-    p.define('expression', () =>
-      sequence([terminal('abc'), choice([p.refer('expression'), empty()])])
+    const p2 = new Parser()
+    p2.define('expression', () =>
+      sequence([terminal('abc'), choice([p2.refer('expression'), empty()])])
     )
-    p.startFrom('expression')
+    p2.startFrom('expression')
 
-    expect(p.parse('abc')).toMatchObject({ success: true, consumed: 3 })
-    expect(p.parse('abcd')).toMatchObject({ success: false, consumed: 3 })
-    expect(p.parse('abcabc')).toMatchObject({ success: true, consumed: 6 })
-    expect(p.parse('abcabcd')).toMatchObject({ success: false, consumed: 6 })
-    expect(p.parse('abcabcabcd')).toMatchObject({ success: false, consumed: 9 })
+    expect(p2.parse('abc')).toMatchObject({ success: true, consumed: 3 })
+    expect(p2.parse('abcd')).toMatchObject({ success: false, consumed: 3 })
+    expect(p2.parse('abcabc')).toMatchObject({ success: true, consumed: 6 })
+    expect(p2.parse('abcabcd')).toMatchObject({ success: false, consumed: 6 })
+    expect(p2.parse('abcabcabcd')).toMatchObject({
+      success: false,
+      consumed: 9,
+    })
   })
 })
