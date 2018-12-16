@@ -1,4 +1,5 @@
 import traverse from 'traverse'
+import Memo from '../core/memo'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import Reference from './reference'
 
@@ -24,6 +25,7 @@ export default class Parser {
   }
 
   public parse(input: string): ResultOfParsing {
+    Memo.clear()
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
     const success = result.consumed === input.length && result.success === true
 
@@ -54,7 +56,6 @@ export default class Parser {
     resultOfParsing: ResultOfParsing
   ): any {
     return traverse(resultOfParsing).map(function(result: ResultOfParsing) {
-      // this.update({ result })
       if (result.resultOfChildren) {
         this.update({
           input,
