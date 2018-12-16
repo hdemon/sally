@@ -15,15 +15,18 @@ export default class Reference implements ParsingExpression {
   public parse(input: string): ResultOfParsing {
     const memoEntry = Memo.getEntry(input.length, this.definitionName)
 
-    if (memoEntry) {
-      return memoEntry
-    }
+    // if (memoEntry) {
+    //   console.log('Cache hits!')
+    //   return memoEntry
+    // }
 
     const result = this.referenceToParser.definitions[
       this.definitionName
     ]().parse(input)
 
-    Memo.storeEntry(input.length, this.definitionName, result)
+    if (result.success) {
+      Memo.storeEntry(input.length, this.definitionName, result)
+    }
 
     return { ...result, operator: this.definitionName }
   }

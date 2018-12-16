@@ -20,9 +20,7 @@ class Memo {
       this.memoEntries[position] = {}
     }
 
-    this.memoEntries[position][definitionName] = JSON.parse(
-      JSON.stringify(result)
-    )
+    this.memoEntries[position][definitionName] = result
   }
 
   public getEntry(position: number, definitionName: string): ResultOfParsing {
