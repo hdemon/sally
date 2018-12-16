@@ -13,7 +13,6 @@ class Logger {
     nameOfExpression: string
     result: ResultOfParsing
   }): void {
-    // FIXME: Think the better way to toggle an availability of logging
     if (this.isAvailable === true) {
       // tslint:disable-next-line no-console
       console.log(

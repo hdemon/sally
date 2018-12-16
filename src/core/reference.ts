@@ -12,16 +12,18 @@ export default class Reference implements ParsingExpression {
   }
 
   public parse(input: string): ResultOfParsing {
-    console.log(`Try to parse as ${c.cyan(this.definitionName)}`)
+    console.log(
+      `Try to parse ${c.blue(input)} as ${c.cyan(this.definitionName)}`
+    )
     const result = this.referenceToParser.definitions[
       this.definitionName
     ]().parse(input)
     console.log(
-      `The result of parsing as ${c.cyan(this.definitionName)} is ${c[
-        result.success ? 'green' : 'red'
-      ](result.success ? 'succeeded' : 'failed')} and consumed ${c.green(
-        String(result.consumed)
-      )} characters`
+      `The result of parsing ${c.blue(input)} as ${c.cyan(
+        this.definitionName
+      )} is ${c[result.success ? 'green' : 'red'](
+        result.success ? 'succeeded' : 'failed'
+      )} and consumed ${c.green(String(result.consumed))} characters`
     )
     return result
   }
