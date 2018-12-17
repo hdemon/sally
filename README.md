@@ -9,4 +9,4 @@ TODO: write
 
 # Usage
 
-Please take a look `test/arithmetic.ts`. I'm gonna write seriously!
+Please take a look `test/arithmetic.ts`. I'm gonna write the document later!
