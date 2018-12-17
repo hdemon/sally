@@ -20,10 +20,26 @@ p.define('P', () =>
   ])
 )
 
-console.time('without packrat parsing')
-p.parse(`(((((((((((((1)))))))))))))`, { packratParsing: false })
-console.timeEnd('without packrat parsing')
+const number = process.argv[3]
+const input = [
+  ...Array(Number(number)).fill('('),
+  '1',
+  ...Array(Number(number)).fill(')'),
+]
+let label, enablePackratParsing
 
-console.time('with packrat parsing')
-p.parse(`(((((((((((((1)))))))))))))`)
-console.timeEnd('with packrat parsing')
+if (process.argv[2] === '--disable-packrat') {
+  enablePackratParsing = false
+  label = 'with packrat parsing'
+} else {
+  label = 'without packrat parsing'
+}
+
+console.time(label)
+const result = p.parse(input, { enablePackratParsing })
+console.timeEnd(label)
+if (result.success) {
+  console.log('Parsing has succeeded.')
+} else {
+  console.log('Parsing has failed.')
+}
