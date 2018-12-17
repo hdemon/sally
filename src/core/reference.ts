@@ -15,10 +15,9 @@ export default class Reference implements ParsingExpression {
   public parse(input: string): ResultOfParsing {
     const memoEntry = Memo.getEntry(input.length, this.definitionName)
 
-    // if (memoEntry) {
-    //   console.log('Cache hits!')
-    //   return memoEntry
-    // }
+    if (memoEntry) {
+      return memoEntry
+    }
 
     const result = this.referenceToParser.definitions[
       this.definitionName

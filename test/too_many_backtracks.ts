@@ -1,8 +1,6 @@
-import { oneOrMore } from '../src/alias/one_or_more'
-import { zeroOrMore } from '../src/alias/zero_or_more'
 import Parser from '../src/core/parser'
-import Choice, { choice } from '../src/operator/choice'
-import Sequence, { sequence } from '../src/operator/sequence'
+import { choice } from '../src/operator/choice'
+import { sequence } from '../src/operator/sequence'
 import { terminal } from '../src/operator/terminal'
 
 const p = new Parser()
@@ -21,18 +19,14 @@ p.define('A', () =>
 
 p.define('P', () =>
   choice([
-    sequence([
-      p.refer('leftParenthesis'),
-      p.refer('A'),
-      p.refer('rightParenthesis'),
-    ]),
+    sequence([terminal('('), p.refer('A'), terminal(')')]),
     terminal('1'),
   ])
 )
 
-test('a', () => {
+test('Parsing too many brackets will take a long time which increases in an exponential fashion without packrat parsing.', () => {
   expect(p.parse(`(((((((((((((1)))))))))))))`)).toMatchObject({
-    consumed: 31,
+    consumed: 27,
     success: true,
   })
 })
