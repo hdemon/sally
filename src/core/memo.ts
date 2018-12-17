@@ -6,6 +6,7 @@ class Memo {
       [definitionName: string]: ResultOfParsing
     }
   }
+  public available = true
 
   constructor() {
     this.memoEntries = {}
@@ -16,6 +17,10 @@ class Memo {
     definitionName: string,
     result: ResultOfParsing
   ): void {
+    if (this.available === false) {
+      return null
+    }
+
     if (this.memoEntries[position] === undefined) {
       this.memoEntries[position] = {}
     }
@@ -24,6 +29,10 @@ class Memo {
   }
 
   public getEntry(position: number, definitionName: string): ResultOfParsing {
+    if (this.available === false) {
+      return null
+    }
+
     if (this.memoEntries[position]) {
       return this.memoEntries[position][definitionName]
     } else {
@@ -32,7 +41,15 @@ class Memo {
   }
 
   public clear() {
+    if (this.available === false) {
+      return
+    }
+
     this.memoEntries = {}
+  }
+
+  public disable() {
+    this.available = false
   }
 }
 

@@ -3,6 +3,10 @@ import Memo from '../core/memo'
 import { ParsingExpression, ResultOfParsing } from '../core/parsing_expression'
 import Reference from './reference'
 
+const defaultOptions = {
+  enablePackratParsing: true,
+}
+
 export default class Parser {
   public definitions: { [key: string]: () => ParsingExpression }
   public definitionNameStartFrom: string
@@ -24,7 +28,11 @@ export default class Parser {
     return new Reference(this, name)
   }
 
-  public parse(input: string): ResultOfParsing {
+  public parse(input: string, options = defaultOptions): ResultOfParsing {
+    if (options.enablePackratParsing === false) {
+      Memo.disable()
+    }
+
     Memo.clear()
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
     const success = result.consumed === input.length && result.success === true
