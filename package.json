@@ -2,9 +2,10 @@
   "name": "sally",
   "version": "0.2.0",
   "description": "PEG parser generator written in JavaScript",
-  "main": "index.js",
+  "main": "core/parser.js",
   "scripts": {
     "test": "jest",
+    "build": "tsc",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "repository": {
