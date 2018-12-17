@@ -9,6 +9,7 @@
     "prefer-const": true,
     "interface-name": false,
     "object-literal-sort-keys": false,
+    "ordered-imports": false,
     "member-ordering": [
       true,
       {
