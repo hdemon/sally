@@ -1,38 +1,39 @@
 {
-  "name": "sally",
-  "version": "0.2.0",
+  "name": "@masamin/sally",
   "description": "PEG parser generator written in JavaScript",
-  "main": "core/parser.js",
-  "scripts": {
-    "test": "jest",
-    "build": "tsc",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hdemon/sally.git"
-  },
+  "version": "0.2.0",
   "author": "Masami Yonehara",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hdemon/sally/issues"
   },
-  "homepage": "https://github.com/hdemon/sally#readme",
+  "dependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.2",
+    "@types/traverse": "^0.6.32",
+    "fixpack": "^2.3.1",
+    "traverse": "^0.6.6"
+  },
   "devDependencies": {
-    "jest": "^23.6.0",
+    "jest": "^24.8.0",
     "jsome": "^2.5.0",
-    "prettier": "1.15.3",
-    "ts-jest": "^23.10.5",
+    "prettier": "1.18.2",
+    "ts-jest": "^24.0.2",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.2.2"
   },
-  "dependencies": {
-    "@types/node": "^10.12.15",
-    "@types/jest": "^23.3.10",
-    "@types/traverse": "^0.6.32",
-    "traverse": "^0.6.6"
+  "homepage": "https://github.com/hdemon/sally#readme",
+  "license": "MIT",
+  "main": "core/parser.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdemon/sally.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   }
 }
