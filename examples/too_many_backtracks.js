@@ -1,4 +1,6 @@
-const { Parser, choice, sequence, terminal } = require('../dist/sally')
+/* eslint-disable no-console */
+const { Parser, choice, sequence, terminal } = require('../src/sally')
+
 const p = new Parser()
 
 // The definition below was borrowed from http://kmizu.hatenablog.com/entry/20090226/1235649181
@@ -28,7 +30,8 @@ const input = [
   '1',
   ...Array(Number(number)).fill(')'),
 ]
-let label, enablePackratParsing
+let label
+let enablePackratParsing
 
 if (process.argv[2] === '--disable-packrat') {
   enablePackratParsing = false
