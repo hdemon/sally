@@ -32,7 +32,6 @@ class Memo {
     if (this.available === false) {
       return null
     }
-
     if (this.memoEntries[position]) {
       return this.memoEntries[position][definitionName]
     } else {

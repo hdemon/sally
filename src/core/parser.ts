@@ -36,7 +36,6 @@ export default class Parser {
     Memo.clear()
     const result = this.definitions[this.definitionNameStartFrom]().parse(input)
     const success = result.consumed === input.length && result.success === true
-
     // なぜこうしているかというと、parse自体の成否とparseから呼び出される最初のexpressionの成否は異なりうるので、
     // それぞれを区別してログに残す必要があるから。 TODO: Rewrite it in English later.
     const eventualResult = {

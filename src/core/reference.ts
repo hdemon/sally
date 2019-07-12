@@ -14,7 +14,6 @@ export default class Reference implements ParsingExpression {
 
   public parse(input: string): ResultOfParsing {
     const memoEntry = Memo.getEntry(input.length, this.definitionName)
-
     if (memoEntry) {
       return memoEntry
     }
