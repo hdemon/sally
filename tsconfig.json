@@ -8,10 +8,5 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",
-        "baseUrl": "src"
-    },
-    "include": [
-        "src/**/*",
-        "types/*"
-    ]
+    }
 }
