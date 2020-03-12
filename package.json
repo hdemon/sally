@@ -10,7 +10,7 @@
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.2",
     "@types/traverse": "^0.6.32",
-    "fixpack": "^2.3.1",
+    "fixpack": "^3.0.3",
     "traverse": "^0.6.6"
   },
   "devDependencies": {
