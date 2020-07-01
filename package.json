@@ -7,7 +7,7 @@
     "url": "https://github.com/hdemon/sally/issues"
   },
   "dependencies": {
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^26.0.0",
     "@types/node": "^12.6.2",
     "@types/traverse": "^0.6.32",
     "fixpack": "^2.3.1",
