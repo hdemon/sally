@@ -14,7 +14,7 @@
     "traverse": "^0.6.6"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/eslint-plugin": "4.27.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-typescript": "^4.0.1",
     "eslint-config-prettier": "^6.0.0",
